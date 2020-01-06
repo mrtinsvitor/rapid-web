@@ -92,18 +92,11 @@ class BlogPosts extends React.Component {
       <Container fluid className="main-content-container px-4">
         {/* Page Header */}
         <Row noGutters className="page-header py-4">
-          <PageTitle sm="8" title="Eventos para as suas áreas" className="text-sm-left" />
+          <PageTitle sm="8" title="Eventos na sua área" className="text-sm-left" />
           <Col>
             <span style={{ color: '#007bff', float: 'right' }}>
               <a href="#" style={{ textDecoration: 'none' }}>Ver todos</a>
             </span>
-            {/* <FormSelect>
-              <option value="first">Selecione o curso</option>
-              <option value="second">Administração</option>
-              <option value="second">Biologia</option>
-              <option value="second">Administração</option>
-              <option value="second">Biologia</option>
-            </FormSelect> */}
           </Col>
         </Row>
 
@@ -113,7 +106,7 @@ class BlogPosts extends React.Component {
               <Card className="card-post mb-4">
                 <CardBody>
                   <span style={{ color: '#007bff' }}>19 de maio de 2020</span>
-                  <CardTitle>{post.title}</CardTitle>
+                  <a href="#"><CardTitle>{post.title}</CardTitle></a>
                   <CardSubtitle>Sistemas de Informação</CardSubtitle>
 
                   <div style={{ marginTop: '15px' }}>

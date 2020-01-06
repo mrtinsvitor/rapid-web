@@ -16,9 +16,9 @@ export default function () {
       to: "/components-overview",
     },
     {
-      title: "User Profile",
+      title: "Perfil",
       htmlBefore: '<i class="material-icons">person</i>',
-      to: "/user-profile-lite",
+      to: "/perfil",
     },
   ];
 }

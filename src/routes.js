@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import { DefaultLayout } from "./layouts";
 
 // Route Views
-import UserProfileLite from "./views/UserProfileLite";
+import UserProfile from "./views/UserProfile";
 import AddNewPost from "./views/AddNewPost";
 import ComponentsOverview from "./views/ComponentsOverview";
 import Events from "./views/Events";
@@ -23,9 +23,9 @@ export default [
     component: Events
   },
   {
-    path: "/user-profile-lite",
+    path: "/perfil",
     layout: DefaultLayout,
-    component: UserProfileLite
+    component: UserProfile
   },
   {
     path: "/add-new-post",

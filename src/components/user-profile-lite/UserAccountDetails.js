@@ -8,9 +8,7 @@ import {
   Row,
   Col,
   Form,
-  FormGroup,
   FormInput,
-  FormSelect,
   FormTextarea,
   Button
 } from "shards-react";
@@ -28,20 +26,20 @@ const UserAccountDetails = ({ title }) => (
               <Row form>
                 {/* First Name */}
                 <Col md="6" className="form-group">
-                  <label htmlFor="feFirstName">First Name</label>
+                  <label htmlFor="feFirstName">Primeiro Nome</label>
                   <FormInput
                     id="feFirstName"
-                    placeholder="First Name"
+                    placeholder="Primeiro Nome"
                     value="Sierra"
                     onChange={() => {}}
                   />
                 </Col>
                 {/* Last Name */}
                 <Col md="6" className="form-group">
-                  <label htmlFor="feLastName">Last Name</label>
+                  <label htmlFor="feLastName">Último Nome</label>
                   <FormInput
                     id="feLastName"
-                    placeholder="Last Name"
+                    placeholder="Último Nome"
                     value="Brooks"
                     onChange={() => {}}
                   />
@@ -54,7 +52,7 @@ const UserAccountDetails = ({ title }) => (
                   <FormInput
                     type="email"
                     id="feEmail"
-                    placeholder="Email Address"
+                    placeholder="Endereço de Email"
                     value="sierra@example.com"
                     onChange={() => {}}
                     autoComplete="email"
@@ -62,62 +60,25 @@ const UserAccountDetails = ({ title }) => (
                 </Col>
                 {/* Password */}
                 <Col md="6" className="form-group">
-                  <label htmlFor="fePassword">Password</label>
+                  <label htmlFor="fePassword">Senha</label>
                   <FormInput
                     type="password"
                     id="fePassword"
-                    placeholder="Password"
+                    placeholder="Senha"
                     value="EX@MPL#P@$$w0RD"
                     onChange={() => {}}
                     autoComplete="current-password"
                   />
                 </Col>
               </Row>
-              <FormGroup>
-                <label htmlFor="feAddress">Address</label>
-                <FormInput
-                  id="feAddress"
-                  placeholder="Address"
-                  value="1234 Main St."
-                  onChange={() => {}}
-                />
-              </FormGroup>
-              <Row form>
-                {/* City */}
-                <Col md="6" className="form-group">
-                  <label htmlFor="feCity">City</label>
-                  <FormInput
-                    id="feCity"
-                    placeholder="City"
-                    onChange={() => {}}
-                  />
-                </Col>
-                {/* State */}
-                <Col md="4" className="form-group">
-                  <label htmlFor="feInputState">State</label>
-                  <FormSelect id="feInputState">
-                    <option>Choose...</option>
-                    <option>...</option>
-                  </FormSelect>
-                </Col>
-                {/* Zip Code */}
-                <Col md="2" className="form-group">
-                  <label htmlFor="feZipCode">Zip</label>
-                  <FormInput
-                    id="feZipCode"
-                    placeholder="Zip"
-                    onChange={() => {}}
-                  />
-                </Col>
-              </Row>
               <Row form>
                 {/* Description */}
                 <Col md="12" className="form-group">
-                  <label htmlFor="feDescription">Description</label>
+                  <label htmlFor="feDescription">Descrição</label>
                   <FormTextarea id="feDescription" rows="5" />
                 </Col>
               </Row>
-              <Button theme="accent">Update Account</Button>
+              <Button theme="accent">Atualizar Conta</Button>
             </Form>
           </Col>
         </Row>
@@ -134,7 +95,7 @@ UserAccountDetails.propTypes = {
 };
 
 UserAccountDetails.defaultProps = {
-  title: "Account Details"
+  title: "Detalhes do Perfil"
 };
 
 export default UserAccountDetails;
