@@ -6,6 +6,16 @@ export default function () {
       to: "/events",
     },
     {
+      title: "Meus Eventos",
+      htmlBefore: '<i class="material-icons">list</i>',
+      to: "/meus-eventos",
+    },
+    {
+      title: "Cadastrar Evento",
+      htmlBefore: '<i class="material-icons">playlist_add</i>',
+      to: "/cadastrar-evento",
+    },
+    {
       title: "Add New Post",
       htmlBefore: '<i class="material-icons">note_add</i>',
       to: "/add-new-post",
