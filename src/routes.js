@@ -6,7 +6,7 @@ import { DefaultLayout } from "./layouts";
 
 // Route Views
 import UserProfile from "./views/UserProfile";
-import AddNewPost from "./views/AddNewPost";
+import CreateEvent from "./views/CreateEvent";
 import ComponentsOverview from "./views/ComponentsOverview";
 import Events from "./views/Events";
 
@@ -28,9 +28,9 @@ export default [
     component: UserProfile
   },
   {
-    path: "/add-new-post",
+    path: "/cadastrar-evento",
     layout: DefaultLayout,
-    component: AddNewPost
+    component: CreateEvent
   },
   {
     path: "/components-overview",
