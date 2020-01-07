@@ -9,23 +9,24 @@ import UserProfile from "./views/UserProfile";
 import CreateEvent from "./views/CreateEvent";
 import ComponentsOverview from "./views/ComponentsOverview";
 import Events from "./views/Events";
+import MyEvents from "./views/MyEvents";
 
 export default [
   {
     path: "/",
     exact: true,
     layout: DefaultLayout,
-    component: () => <Redirect to="/events" />
+    component: () => <Redirect to="/eventos" />
   },
   {
-    path: "/events",
+    path: "/eventos",
     layout: DefaultLayout,
     component: Events
   },
   {
-    path: "/perfil",
+    path: "/meus-eventos",
     layout: DefaultLayout,
-    component: UserProfile
+    component: MyEvents
   },
   {
     path: "/cadastrar-evento",
@@ -36,5 +37,10 @@ export default [
     path: "/components-overview",
     layout: DefaultLayout,
     component: ComponentsOverview
+  },
+  {
+    path: "/perfil",
+    layout: DefaultLayout,
+    component: UserProfile
   },
 ];

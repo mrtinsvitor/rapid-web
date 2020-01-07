@@ -3,7 +3,7 @@ export default function () {
     {
       title: "Eventos",
       htmlBefore: '<i class="material-icons">view_week</i>',
-      to: "/events",
+      to: "/eventos",
     },
     {
       title: "Meus Eventos",

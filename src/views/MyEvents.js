@@ -100,7 +100,7 @@ class BlogPosts extends React.Component {
       <Container fluid className="main-content-container px-4">
         {/* Page Header */}
         <Row noGutters className="page-header py-4">
-          <PageTitle sm="8" title="Eventos na sua área" className="text-sm-left" />
+          <PageTitle sm="8" title="Meus Eventos" className="text-sm-left" />
           <Col>
             <span style={{ color: '#007bff', float: 'right' }}>
               <a href="#" style={{ textDecoration: 'none' }}>Ver todos</a>
@@ -154,12 +154,6 @@ class BlogPosts extends React.Component {
 
       </Container>
     );
-  }
-}
-
-const styles = {
-  cardEventOver: {
-    backgroundColor: '#d6d6d6'
   }
 }
 
