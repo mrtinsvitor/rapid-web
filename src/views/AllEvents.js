@@ -17,7 +17,8 @@ import {
   CardHeader,
   CardLink,
   ListGroup,
-  ListGroupItem
+  ListGroupItem,
+  FormGroup
 } from "shards-react";
 
 import PageTitle from "../components/common/PageTitle";
@@ -110,48 +111,83 @@ class BlogPosts extends React.Component {
           </Col>
         </Row>
 
-        <strong className="d-block m-1" style={{ fontSize: '18px', color: '#007bff' }}>Segunda, 12 de Maio</strong>
-        {PostsListThree.map((post, idx) => (
-          <Row style={{ padding: '10px 20px' }}>
-            <Card
-              className="card-post"
-              style={{ backgroundColor: post.finalizado ? 'rgba(214, 214, 214, 0.6)' : '#fff', width: '100%', margin: '0 auto' }}
-            >
-              <CardBody style={{ padding: '10px', }}>
-                <Row>
-                  <div style={{ display: 'flex', flexDirection: 'row', width: '80%' }}>
-                    <div style={{ flexDirection: 'column', alignSelf: 'center', display: 'block', width: '12%' }}>
-                      <p style={{ textAlign: 'center', marginBottom: 0, fontSize: '18px' }}>09:00</p>
-                    </div>
-                    <div style={{ alignSelf: 'center' }}>
-                      <p className="title mb-1">{post.title}</p>
+        <Row>
+          <Col lg="8" md="12">
+            <strong className="d-block m-1" style={{ fontSize: '18px', color: '#007bff' }}>Segunda, 12 de Maio</strong>
+            {PostsListThree.map((post, idx) => (
+              <Row style={{ padding: '10px 20px' }}>
+                <Card
+                  className="card-post"
+                  style={{ backgroundColor: post.finalizado ? 'rgba(214, 214, 214, 0.6)' : '#fff', width: '100%', margin: '0 auto' }}
+                >
+                  <CardBody style={{ padding: '10px', }}>
+                    <Row>
+                      <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
+                        <div style={{ flexDirection: 'column', alignSelf: 'center', display: 'block', width: '13%' }}>
+                          <p style={{ textAlign: 'center', marginBottom: 0, fontSize: '18px' }}>09:00</p>
+                        </div>
+                        <div style={{ alignSelf: 'center' }}>
+                          <p className="title mb-1">{post.title}</p>
 
-                      <Badge
-                        // theme={idx % 2 === 0 ? "primary" : "success"}
-                        theme="primary"
-                        className="mb-2"
-                        style={{ backgroundColor: post.finalizado ? '#4e545b' : null }}
-                      >
-                        {post.curso}
-                      </Badge>
+                          <Badge
+                            // theme={idx % 2 === 0 ? "primary" : "success"}
+                            theme="primary"
+                            className="mb-2"
+                            style={{ backgroundColor: post.finalizado ? '#4e545b' : null }}
+                          >
+                            {post.curso}
+                          </Badge>
 
-                      <div style={{}}>
-                        <i className="material-icons">pin_drop</i>
-                        <p className="card-text text-muted" style={{ display: 'inline-block', paddingLeft: '5px', marginBottom: 0, fontSize: '14px' }}>Cinema 2 - Shopping Unigranrio</p>
+                          <div style={{}}>
+                            <i className="material-icons">pin_drop</i>
+                            <p className="card-text text-muted" style={{ display: 'inline-block', paddingLeft: '5px', marginBottom: 0, fontSize: '14px' }}>Cinema 2 - Shopping Unigranrio</p>
+                          </div>
+
+                          <div>
+                            <i className="material-icons">person</i>
+                            <p className="card-text text-muted" style={{ display: 'inline-block', paddingLeft: '5px', marginBottom: 0, fontSize: '14px' }}>26 inscrições</p>
+                          </div>
+                        </div>
                       </div>
+                    </Row>
+                  </CardBody>
+                </Card>
+              </Row>
+            ))}
+          </Col>
 
-                      <div>
-                        <i className="material-icons">person</i>
-                        <p className="card-text text-muted" style={{ display: 'inline-block', paddingLeft: '5px', marginBottom: 0, fontSize: '14px' }}>26 inscrições</p>
-                      </div>
-                    </div>
-                  </div>
-                </Row>
+          <Col lg="4" md="12">
+            <Card small className="mb-3">
+              <CardBody className="p-0">
+                <ListGroup flush>
+                  <ListGroupItem className="px-4 pb-3">
+                    <FormGroup>
+                      <label htmlFor="date" className="input-required">Data do Evento</label>
+                    </FormGroup>
+
+                    <FormGroup>
+                      <label htmlFor="enrollment-ending">Data Limite para Inscrição</label>
+                    </FormGroup>
+
+                    <FormGroup CardBody>
+                      <Row>
+                        <Col>
+                          <label htmlFor="opening-hour" className="input-required">Horário de Abertura</label>
+                        </Col>
+
+                        <Col>
+                          <label htmlFor="ending-hour" className="input-required">Horário de Encerramento</label>
+                        </Col>
+                      </Row>
+                    </FormGroup>
+
+                  </ListGroupItem>
+                </ListGroup>
               </CardBody>
             </Card>
-          </Row>
-        ))}
 
+          </Col>
+        </Row>
       </Container>
     );
   }
