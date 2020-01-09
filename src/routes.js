@@ -8,7 +8,8 @@ import { DefaultLayout } from "./layouts";
 import UserProfile from "./views/UserProfile";
 import CreateEvent from "./views/CreateEvent";
 import ComponentsOverview from "./views/ComponentsOverview";
-import Events from "./views/Events";
+import EventList from "./views/EventList";
+import AllEvents from "./views/AllEvents";
 import MyEvents from "./views/MyEvents";
 
 export default [
@@ -21,12 +22,17 @@ export default [
   {
     path: "/eventos",
     layout: DefaultLayout,
-    component: Events
+    component: EventList
   },
   {
     path: "/meus-eventos",
     layout: DefaultLayout,
     component: MyEvents
+  },
+  {
+    path: "/todos-eventos",
+    layout: DefaultLayout,
+    component: AllEvents
   },
   {
     path: "/cadastrar-evento",
