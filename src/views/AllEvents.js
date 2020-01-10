@@ -22,7 +22,6 @@ const BlogPosts = () => {
   const posts = [
     {
       author: "John James",
-      authorAvatar: require("../images/avatars/1.jpg"),
       title: "Had denoting properly jointure which well books beyond",
       body:
         "In said to of poor full be post face snug. Introduced imprudence see say unpleasing devonshire acceptance son. Exeter longer wisdom work...",
@@ -32,7 +31,6 @@ const BlogPosts = () => {
     },
     {
       author: "John James",
-      authorAvatar: require("../images/avatars/2.jpg"),
       title: "Husbands ask repeated resolved but laughter debating",
       body:
         "It abode words began enjoy years no do ﻿no. Tried spoil as heart visit blush or. Boy possible blessing sensible set but margaret interest. Off tears...",
@@ -41,7 +39,6 @@ const BlogPosts = () => {
     },
     {
       author: "John James",
-      authorAvatar: require("../images/avatars/3.jpg"),
       title:
         "Instantly gentleman contained belonging exquisite now direction",
       body:
@@ -52,7 +49,6 @@ const BlogPosts = () => {
     },
     {
       author: "John James",
-      authorAvatar: require("../images/avatars/3.jpg"),
       title:
         "Instantly gentleman contained belonging exquisite now direction",
       body:
@@ -62,7 +58,6 @@ const BlogPosts = () => {
     },
     {
       author: "John James",
-      authorAvatar: require("../images/avatars/3.jpg"),
       title:
         "Instantly gentleman contained belonging exquisite now direction",
       body:
@@ -72,7 +67,6 @@ const BlogPosts = () => {
     },
     {
       author: "John James",
-      authorAvatar: require("../images/avatars/3.jpg"),
       title:
         "Instantly gentleman contained belonging exquisite now direction",
       body:
