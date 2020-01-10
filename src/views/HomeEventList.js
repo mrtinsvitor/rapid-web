@@ -22,7 +22,7 @@ const HomeEventList = () => {
         :
         <div>
           <Row noGutters className="page-header py-4">
-            <PageTitle sm="8" title="Meus Eventos" className="text-sm-left" />
+            <PageTitle sm="8" title="Eventos Na Sua Área" className="text-sm-left" />
             <Col>
               <span style={{ color: '#007bff', float: 'right' }}>
                 <Link to="/todos-eventos">Ver todos</Link>
