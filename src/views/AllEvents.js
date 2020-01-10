@@ -90,11 +90,6 @@ const BlogPosts = () => {
       {/* Page Header */}
       <Row noGutters className="page-header py-4">
         <PageTitle sm="8" title="Todos os Eventos" className="text-sm-left" />
-        <Col>
-          <span style={{ color: '#007bff', float: 'right' }}>
-            <a href="#" style={{ textDecoration: 'none' }}>Ver todos</a>
-          </span>
-        </Col>
       </Row>
 
       <Row>
@@ -165,7 +160,7 @@ const BlogPosts = () => {
 
                   <div className="mb-4">
                     <strong className="text-muted d-block mb-2">
-                      Eventos Finalizados
+                      Mostrar Eventos Finalizados
                     </strong>
                     <FormCheckbox
                       toggle
@@ -178,7 +173,7 @@ const BlogPosts = () => {
                   <div className="mb-3">
                     <strong className="text-muted d-block mb-2">
                       Data do Evento
-                  </strong>
+                    </strong>
                     <DatePicker
                       selected={startDate}
                       onChange={date => setStartDate(date)}
@@ -189,7 +184,6 @@ const BlogPosts = () => {
               </ListGroup>
             </CardBody>
           </Card>
-
         </Col>
       </Row>
     </Container>
