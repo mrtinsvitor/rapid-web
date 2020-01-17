@@ -1,9 +1,12 @@
 import axios from 'axios';
-import localstorage from 'localstorage';
 
-import { baseUrl } from '../config/apiConfig';
+import { baseURL } from '../config/apiConfig';
 
-const instance = axios.create({ baseUrl, timeout: 600000 })
+const instance = axios.create({
+  baseURL,
+  timeout: 60000,
+  headers: { 'Content-Type': 'application/json' }
+});
 
 export default {
   get: (url, data) => {
@@ -48,7 +51,7 @@ const refreshToken = async (reqConfig) => {
 };
 
 const handleError = (err, reqConfig) => {
-  if (err.response.data && err.response.data.error == 'invalid_token') {
+  if (err.response.data && err.response.data.error === 'invalid_token') {
     return refreshToken(reqConfig);
   } else if (err.response.data) {
     throw err.response.data;
