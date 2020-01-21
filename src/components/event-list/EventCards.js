@@ -8,6 +8,8 @@ import {
   CardTitle,
 } from "shards-react";
 
+import {formatDate} from '../../utils/date';
+
 const EventCards = ({ eventList }) => {
   return (
     <Row>
@@ -25,11 +27,11 @@ const EventCards = ({ eventList }) => {
               flexDirection: 'column'
             }}>
               <div>
-                <span style={{ color: event.eventDate > new Date() ? null : '#007bff' }}>{event.eventDate}</span>
+                <span style={{ color: event.eventDate > new Date() ? null : '#007bff' }}>{formatDate(event.eventDate)}</span>
                 {event.eventDate > new Date() ?
                   <Badge theme="success " style={{ float: 'right' }}>Finalizado</Badge>
                   : null}
-                <a title={event.name} href="#"><CardTitle className="event-title">{event.name}</CardTitle></a>
+                <a title={event.name} href="#event"><CardTitle className="event-title">{event.name}</CardTitle></a>
               </div>
 
               <div style={{ marginTop: 'auto' }}>
