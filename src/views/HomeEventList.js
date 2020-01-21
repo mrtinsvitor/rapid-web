@@ -20,12 +20,16 @@ const HomeEventList = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    return api.get('/events')
-      .then(res => {
-        setLoading(false);
-        return setEventList(res)
-      })
-      .catch(err => setLoading(false));
+    async function getEvents() {
+      return api.get('/events')
+        .then(res => {
+          setLoading(false);
+          return setEventList(res)
+        })
+        .catch(err => setLoading(false));
+    }
+
+    getEvents();
   }, []);
 
   return (

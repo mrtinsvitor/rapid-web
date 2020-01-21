@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Row,
   Col,
@@ -29,7 +29,7 @@ const EventCards = ({ eventList }) => {
                 {event.eventDate > new Date() ?
                   <Badge theme="success " style={{ float: 'right' }}>Finalizado</Badge>
                   : null}
-                <a href="#"><CardTitle className="event-title">{event.name}</CardTitle></a>
+                <a title={event.name} href="#"><CardTitle className="event-title">{event.name}</CardTitle></a>
               </div>
 
               <div style={{ marginTop: 'auto' }}>
