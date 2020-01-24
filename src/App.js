@@ -20,9 +20,12 @@ export default () => (
             exact={route.exact}
             component={withTracker(props => {
               return (
-                <route.layout {...props}>
+                route.layout === '/login' ?
                   <route.component {...props} />
-                </route.layout>
+                  :
+                  <route.layout {...props}>
+                    <route.component {...props} />
+                  </route.layout>
               );
             })}
           />
