@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import routes from "./routes";
 import withTracker from "./withTracker";
+import AppContainer from './components/AppContainer';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/shards-dashboards.1.1.0.min.css";
@@ -22,12 +23,15 @@ export default () => (
             exact={route.exact}
             component={withTracker(props => {
               return (
-                route.path === '/login' ?
-                  <route.component {...props} />
-                  :
-                  <route.layout {...props}>
+                // <AppContainer>
+                  route.path === '/login' ?
                     <route.component {...props} />
-                  </route.layout>
+                    :
+                    <route.layout {...props}>
+                      <route.component {...props} />
+                    </route.layout>
+                  
+                // </AppContainer>
               );
             })}
           />

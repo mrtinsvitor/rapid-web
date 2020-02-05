@@ -12,6 +12,7 @@ import ComponentsOverview from "./views/ComponentsOverview";
 import HomeEventList from "./views/HomeEventList";
 import AllEvents from "./views/AllEvents";
 import MyEvents from "./views/MyEvents";
+import SignUp from "./views/SignUp";
 
 export default [
   {
@@ -23,6 +24,10 @@ export default [
   {
     path: "/login",
     component: Login
+  },
+  {
+    path: "/registrar",
+    component: SignUp
   },
   {
     path: "/eventos",

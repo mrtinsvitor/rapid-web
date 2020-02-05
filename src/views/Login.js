@@ -1,34 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useContext } from "react";
+import { withRouter, Redirect } from "react-router";
 
 import googleIcon from '../assets/images/icons/google.svg';
 
+import { AuthContext } from '../components/firebaseAuth/AuthProvider';
+import app from '../config/firebase';
+
+import "../styles/main.css";
+import "../styles/util.css";
+
 const Login = (props) => {
+  // const { currentUser } = useContext(AuthContext);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [invalidLogin, setInvalidLogin] = useState(false);
+  // if (currentUser) {
+  //   return <Redirect to="/eventos" />;
+  // }
 
-  function login() {
-    if (!email || !password) {
-      return setInvalidLogin(true);
-    }
+  const [errorMessage, setErrorMessage] = useState('');
+  // const [error, setError] = useState(false);
 
-    return props.history.push('/eventos')
-  }
+  const handleLogin = useCallback(
+    async event => {
+      event.preventDefault();
+
+      const { email, password } = event.target.elements;
+
+      try {
+        const auth = await app
+          .auth()
+          .signInWithEmailAndPassword(email.value.trim(), password.value);
+
+        console.log('auth', auth)
+        props.history.push("/");
+      } catch (error) {
+        setErrorMessage(error);
+      }
+    },
+    [props.history]
+  );
 
   return (
     <div>
       <div className="limiter">
         <div className="container-login100">
           <div className="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
-            <form className="login100-form validate-form">
+            <form className="login100-form validate-form" onSubmit={handleLogin}>
               <span className="login100-form-title p-b-55">
                 Área do Professor
               </span>
 
-              {invalidLogin &&
+              {errorMessage &&
                 <div style={{ margin: '0 auto', marginBottom: '5px' }}>
-                  <span style={{ color: 'red' }}>E-mail ou senha inválidos</span>
+                  <span style={{ color: 'red' }}>{errorMessage}</span>
                 </div>
               }
 
@@ -38,8 +61,6 @@ const Login = (props) => {
                   type="text"
                   name="email"
                   placeholder="Email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
                 />
                 <span className="focus-input100"></span>
                 <span className="symbol-input100">
@@ -51,10 +72,8 @@ const Login = (props) => {
                 <input
                   className="input100"
                   type="password"
-                  name="pass"
+                  name="password"
                   placeholder="Senha"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
                 />
                 <span className="focus-input100"></span>
                 <span className="symbol-input100">
@@ -70,7 +89,7 @@ const Login = (props) => {
               </div>
 
               <div className="container-login100-form-btn p-t-25">
-                <button className="login100-form-btn" type="button" onClick={(e) => login(e)}>
+                <button className="login100-form-btn" type="submit">
                   Login
                 </button>
               </div>

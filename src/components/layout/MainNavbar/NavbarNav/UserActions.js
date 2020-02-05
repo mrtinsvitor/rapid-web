@@ -10,6 +10,8 @@ import {
   NavLink
 } from "shards-react";
 
+import app from '../../../../config/firebase';
+
 export default class UserActions extends React.Component {
   constructor(props) {
     super(props);
@@ -19,12 +21,19 @@ export default class UserActions extends React.Component {
     };
 
     this.toggleUserActions = this.toggleUserActions.bind(this);
+    this.signOut = this.signOut.bind(this);
   }
 
   toggleUserActions() {
     this.setState({
       visible: !this.state.visible
     });
+  }
+
+  signOut() {
+    console.log(this.props)
+    app.auth().signOut()
+    return this.props.history.push('/login');
   }
 
   render() {
@@ -43,7 +52,7 @@ export default class UserActions extends React.Component {
             <i className="material-icons">&#xE7FD;</i> Perfil
           </DropdownItem>
           <DropdownItem divider />
-          <DropdownItem tag={Link} to="/" className="text-danger">
+          <DropdownItem onClick={() => this.signOut()} className="text-danger">
             <i className="material-icons text-danger">&#xE879;</i> Logout
           </DropdownItem>
         </Collapse>
