@@ -22,12 +22,12 @@ export default () => (
             exact={route.exact}
             component={withTracker(props => {
               return (
-                // route.layout === '/login' ?
+                route.path === '/login' ?
                   <route.component {...props} />
-                  // :
-                  // <route.layout {...props}>
-                  //   <route.component {...props} />
-                  // </route.layout>
+                  :
+                  <route.layout {...props}>
+                    <route.component {...props} />
+                  </route.layout>
               );
             })}
           />
