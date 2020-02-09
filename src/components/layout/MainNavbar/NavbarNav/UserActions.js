@@ -31,9 +31,7 @@ export default class UserActions extends React.Component {
   }
 
   signOut() {
-    console.log(this.props)
-    firebaseApp.auth().signOut()
-    return this.props.history.push('/login');
+    return firebaseApp.auth().signOut();
   }
 
   render() {
