@@ -15,7 +15,7 @@ import NotFoundEvent from "../components/errors/NotFoundEvent";
 import api from '../utils/api';
 import LoadingSpinner from "../components/utils/LoadingSpinner";
 
-const HomeEventList = () => {
+const HomeEventList = (props) => {
   const [eventList, setEventList] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -48,7 +48,7 @@ const HomeEventList = () => {
             </Col>
           </Row>
 
-          <EventCards eventList={eventList} />
+          <EventCards eventList={eventList} history={props.history} />
         </div>
       }
     </Container>

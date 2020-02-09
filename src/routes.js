@@ -14,6 +14,8 @@ import AllEvents from "./views/AllEvents";
 import MyEvents from "./views/MyEvents";
 import SignUp from "./views/SignUp";
 
+import Event from "./views/Event";
+
 export default [
   {
     path: "/",
@@ -48,6 +50,11 @@ export default [
     path: "/cadastrar-evento",
     layout: DefaultLayout,
     component: CreateEvent
+  },
+  {
+    path: "/detalhes-evento/:id",
+    layout: DefaultLayout,
+    component: Event
   },
   {
     path: "/components-overview",
