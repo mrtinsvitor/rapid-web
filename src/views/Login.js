@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 
 import googleIcon from '../assets/images/icons/google.svg';
 
-import app from '../config/firebase';
+import firebaseApp from '../config/firebaseApp';
 
 import "../styles/main.css";
 import "../styles/util.css";
@@ -20,7 +20,7 @@ const Login = (props) => {
       const { email, password } = event.target.elements;
 
       try {
-        const auth = await app
+        const auth = await firebaseApp
           .auth()
           .signInWithEmailAndPassword(email.value.trim(), password.value);
 

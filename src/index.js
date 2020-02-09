@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import { AuthProvider } from './components/firebaseAuth/AuthProvider';
+import { FirebaseAuthProvider } from './providers/FirebaseAuth/FirebaseAuthProvider';
 
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <AuthProvider>
+  <FirebaseAuthProvider>
     <App />
-  </AuthProvider>,
+  </FirebaseAuthProvider>,
   document.getElementById('root')
 );
 

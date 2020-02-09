@@ -10,7 +10,7 @@ import {
   NavLink
 } from "shards-react";
 
-import app from '../../../../config/firebase';
+import firebaseApp from '../../../../config/firebaseApp';
 
 export default class UserActions extends React.Component {
   constructor(props) {
@@ -32,7 +32,7 @@ export default class UserActions extends React.Component {
 
   signOut() {
     console.log(this.props)
-    app.auth().signOut()
+    firebaseApp.auth().signOut()
     return this.props.history.push('/login');
   }
 

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import app from "../../config/firebase";
+import firebaseApp from '../../config/firebaseApp';
 
 export const AuthContext = React.createContext();
 
-export const AuthProvider = ({ children }) => {
+export const FirebaseAuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    app.auth().onAuthStateChanged(setCurrentUser);
+    firebaseApp.auth().onAuthStateChanged(setCurrentUser);
   }, []);
 
   return (
@@ -20,3 +20,5 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+export default FirebaseAuthProvider;

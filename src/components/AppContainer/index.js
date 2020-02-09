@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Redirect } from "react-router-dom";
 
-import { AuthContext } from '../firebaseAuth/AuthProvider';
+import { FirebaseAuthProvider } from '../../providers/FirebaseAuth/FirebaseAuthProvider';
 
 const AppContainer = (props) => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(FirebaseAuthProvider);
 
   if (currentUser) {
     return props.children;
