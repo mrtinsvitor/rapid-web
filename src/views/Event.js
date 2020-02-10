@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from "react";
+import {
+  Button,
+  Col,
+  Row
+} from 'shards-react';
 
 import api from '../utils/api';
+import { formatDate } from '../utils/date';
+
+import avatar from "../assets/images/avatars/0.jpg";
+import LoadingSpinner from "../components/utils/LoadingSpinner";
+import EventTopBar from "../components/EventDetails/EventTopBar";
 
 const Event = ({ match }) => {
   const [event, setEvent] = useState({});
@@ -19,9 +29,11 @@ const Event = ({ match }) => {
   }, [])
 
   return (
-    <>
-      <h1>{event.name}</h1>
-    </>
+    <div>
+      {!event.id ? <LoadingSpinner /> :
+        <EventTopBar event={event} />
+      }
+    </div>
   );
 };
 
