@@ -29,3 +29,7 @@ export const parseDate = (input) => {
 
   return day + '/' + month + '/' + year;
 }
+
+export const formatTime = (input) => {
+  return input.substring(0, input.length - 3);
+}

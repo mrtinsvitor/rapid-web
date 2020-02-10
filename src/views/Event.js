@@ -2,15 +2,21 @@ import React, { useEffect, useState } from "react";
 import {
   Button,
   Col,
-  Row
+  Row,
+  Card,
+  CardBody,
+  ListGroup,
+  ListGroupItem
 } from 'shards-react';
 
 import api from '../utils/api';
-import { formatDate } from '../utils/date';
+import { formatDate, formatTime } from '../utils/date';
 
-import avatar from "../assets/images/avatars/0.jpg";
 import LoadingSpinner from "../components/utils/LoadingSpinner";
 import EventTopBar from "../components/EventDetails/EventTopBar";
+
+import eventImagePlaceholder from '../assets/images/event-image-placeholder.png';
+import EventSideBarInfo from "../components/EventDetails/EventSideBarInfo";
 
 const Event = ({ match }) => {
   const [event, setEvent] = useState({});
@@ -31,10 +37,24 @@ const Event = ({ match }) => {
   return (
     <div>
       {!event.id ? <LoadingSpinner /> :
-        <EventTopBar event={event} />
+        <div>
+          <EventTopBar event={event} />
+
+          <EventSideBarInfo event={event} />
+        </div>
       }
     </div>
   );
 };
+
+const styles = {
+  sidebarIcon: {
+    fontSize: '20px',
+    padding: '0 15px 0 5px'
+  },
+  sidebarInfoTag: {
+    fontSize: '18px',
+  }
+}
 
 export default Event;

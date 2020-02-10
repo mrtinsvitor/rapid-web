@@ -2,7 +2,7 @@ import React from "react";
 import ReactQuill from "react-quill";
 import { Card, CardBody, Form, FormInput, FormTextarea, FormGroup, Row, Col, Button } from "shards-react";
 
-import placeholderEventImage from '../../assets/event-image-placeholder.png';
+import placeholderEventImage from '../../assets/images/event-image-placeholder.png';
 
 import "react-quill/dist/quill.snow.css";
 import "../../assets/quill.css";
