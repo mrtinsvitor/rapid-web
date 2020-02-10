@@ -9,7 +9,7 @@ import {
 } from "shards-react";
 
 import PageTitle from "../components/common/PageTitle";
-import EventCards from '../components/event-list/EventCards';
+import EventCards from '../components/EventCards';
 import NotFoundEvent from "../components/errors/NotFoundEvent";
 
 const HomeEventList = () => {

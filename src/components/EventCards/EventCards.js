@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Row,
   Col,
@@ -14,8 +14,8 @@ const EventCards = ({ eventList, history }) => {
   return (
     <Row>
       {eventList.map((event, idx) => (
-        <Col lg="4" key={idx}>
-          <div style={{ cursor: 'pointer' }} onClick={() => history.push(`/detalhes-evento/${event.id}`)}>
+        <Col lg="4" key={idx} style={{marginBottom: '35px'}}>
+          <div style={{ cursor: 'pointer', height: '100%' }} onClick={() => history.push(`/detalhes-evento/${event.id}`)}>
             <Card
               className="card-post mb-4"
               style={{
@@ -32,7 +32,7 @@ const EventCards = ({ eventList, history }) => {
                   {event.eventDate > new Date() ?
                     <Badge theme="success " style={{ float: 'right' }}>Finalizado</Badge>
                     : null}
-                  <a title={event.name} href="#event"><CardTitle className="event-title">{event.name}</CardTitle></a>
+                  <a title={event.name}><CardTitle className="event-title">{event.name}</CardTitle></a>
                 </div>
 
                 <div style={{ marginTop: 'auto' }}>
