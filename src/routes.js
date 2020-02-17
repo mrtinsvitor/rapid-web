@@ -6,64 +6,74 @@ import { DefaultLayout } from "./layouts";
 
 // Route Views
 import Login from './views/Login';
+import SignUp from "./views/SignUp";
+import PrintQRCode from "./views/PrintQRCode";
+
 import UserProfile from "./views/UserProfile";
 import CreateEvent from "./views/CreateEvent";
 import ComponentsOverview from "./views/ComponentsOverview";
 import HomeEventList from "./views/HomeEventList";
 import AllEvents from "./views/AllEvents";
 import MyEvents from "./views/MyEvents";
-import SignUp from "./views/SignUp";
-
 import Event from "./views/Event";
 
-export default [
-  {
-    path: "/",
-    exact: true,
-    layout: DefaultLayout,
-    component: () => <Redirect to="/login" />
-  },
-  {
-    path: "/login",
-    component: Login
-  },
-  {
-    path: "/registrar",
-    component: SignUp
-  },
-  {
-    path: "/eventos",
-    layout: DefaultLayout,
-    component: HomeEventList
-  },
-  {
-    path: "/meus-eventos",
-    layout: DefaultLayout,
-    component: MyEvents
-  },
-  {
-    path: "/todos-eventos",
-    layout: DefaultLayout,
-    component: AllEvents
-  },
-  {
-    path: "/cadastrar-evento",
-    layout: DefaultLayout,
-    component: CreateEvent
-  },
-  {
-    path: "/detalhes-evento/:id",
-    layout: DefaultLayout,
-    component: Event
-  },
-  {
-    path: "/components-overview",
-    layout: DefaultLayout,
-    component: ComponentsOverview
-  },
-  {
-    path: "/perfil",
-    layout: DefaultLayout,
-    component: UserProfile
-  },
-];
+export default {
+  open: [
+    {
+      path: "/login",
+      component: Login
+    },
+    {
+      path: "/registrar",
+      component: SignUp
+    },
+    {
+      path: "/imprimir-qr/:qrCodeValue",
+      component: PrintQRCode
+    },
+  ],
+  closed: [
+    {
+      path: "/",
+      exact: true,
+      layout: DefaultLayout,
+      component: () => <Redirect to="/login" />
+    },
+
+    {
+      path: "/eventos",
+      layout: DefaultLayout,
+      component: HomeEventList
+    },
+    {
+      path: "/meus-eventos",
+      layout: DefaultLayout,
+      component: MyEvents
+    },
+    {
+      path: "/todos-eventos",
+      layout: DefaultLayout,
+      component: AllEvents
+    },
+    {
+      path: "/cadastrar-evento",
+      layout: DefaultLayout,
+      component: CreateEvent
+    },
+    {
+      path: "/detalhes-evento/:id",
+      layout: DefaultLayout,
+      component: Event
+    },
+    {
+      path: "/components-overview",
+      layout: DefaultLayout,
+      component: ComponentsOverview
+    },
+    {
+      path: "/perfil",
+      layout: DefaultLayout,
+      component: UserProfile
+    },
+  ]
+};

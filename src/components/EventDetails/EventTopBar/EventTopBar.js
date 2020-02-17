@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Col,
@@ -8,8 +8,11 @@ import {
 import { formatDate } from '../../../utils/date';
 
 import defaultAvatar from "../../../assets/images/defaults/default_avatar.png";
+import QRModal from "../../QRModal/QRModal";
 
 const EventTopBar = ({ event }) => {
+  const [showModal, toggleModal] = useState(false);
+
   return (
     <div
       className="top-event-bar-container"
@@ -54,13 +57,25 @@ const EventTopBar = ({ event }) => {
             </Col>
 
             <Col>
-              <Button theme="info" pill outline style={{ padding: '15px' }}>
+              <Button
+                theme="info"
+                pill
+                outline
+                style={{ padding: '15px' }}
+                onClick={() => toggleModal(!showModal)}
+              >
                 <i className="fas fa-qrcode" style={{ paddingRight: '8px', textAlign: 'left', fontSize: '18px' }}></i>
                 <span style={{ fontSize: '14px' }}>Código QR</span>
               </Button>
             </Col>
           </Row>
         </div>
+
+        <QRModal
+          open={showModal}
+          toggle={() => toggleModal(!showModal)}
+          qrCodeValue={event.id}
+        />
 
       </div>
     </div>

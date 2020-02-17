@@ -1,36 +1,28 @@
 import React, { useEffect, useState } from "react";
 import {
-  Button,
   Col,
   Row,
-  Card,
-  CardBody,
-  ListGroup,
-  ListGroupItem
 } from 'shards-react';
 
 import api from '../utils/api';
-import { formatDate, formatTime } from '../utils/date';
 
 import LoadingSpinner from "../components/utils/LoadingSpinner";
 import EventTopBar from "../components/EventDetails/EventTopBar";
 
-import eventImagePlaceholder from '../assets/images/event-image-placeholder.png';
 import EventSideBarInfo from "../components/EventDetails/EventSideBarInfo";
 import EventContent from "../components/EventDetails/EventContent/EventContent";
 
 const Event = ({ match }) => {
   const [event, setEvent] = useState({});
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
+  const [error, setError] = useState('');
 
   useEffect(() => {
     async function getEvents() {
       return api.get(`/events/${match.params.id}`)
         .then(res => {
-          // res.coverPhoto = URL.createObjectURL(res.coverPhoto);
           setEvent(res);
-          setLoading(false);
+          return setLoading(false);
         })
         .catch(err => setError('Evento não encontrado'));
     }

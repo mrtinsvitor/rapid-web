@@ -16,7 +16,8 @@ import "./styles/util.css";
 export default () => (
   <Router basename={process.env.REACT_APP_BASENAME || ""}>
     <div>
-      {routes.map((route, index) => {
+      {/* No Auth Routes */}
+      {routes.open.map((route, index) => {
         return (
           <Route
             key={index}
@@ -24,14 +25,27 @@ export default () => (
             exact={route.exact}
             component={withTracker(props => {
               return (
-                route.path === '/login' || route.path === '/registrar' ?
-                  <route.component {...props} />
-                  :
-                  <FirebaseAuthProvider history={props.history}>
-                    <route.layout {...props}>
-                      <route.component {...props} />
-                    </route.layout>
-                  </FirebaseAuthProvider>
+                <route.component {...props} />
+              );
+            })}
+          />
+        );
+      })}
+
+      {/* Authenticated Routes */}
+      {routes.closed.map((route, index) => {
+        return (
+          <Route
+            key={index}
+            path={route.path}
+            exact={route.exact}
+            component={withTracker(props => {
+              return (
+                <FirebaseAuthProvider history={props.history}>
+                  <route.layout {...props}>
+                    <route.component {...props} />
+                  </route.layout>
+                </FirebaseAuthProvider>
               );
             })}
           />
