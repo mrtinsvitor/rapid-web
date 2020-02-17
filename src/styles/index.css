@@ -10,3 +10,11 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2; /* number of lines to show */
 }
+
+.pd-30 {
+  padding: 30px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}

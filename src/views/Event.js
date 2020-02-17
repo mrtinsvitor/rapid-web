@@ -17,6 +17,7 @@ import EventTopBar from "../components/EventDetails/EventTopBar";
 
 import eventImagePlaceholder from '../assets/images/event-image-placeholder.png';
 import EventSideBarInfo from "../components/EventDetails/EventSideBarInfo";
+import EventContent from "../components/EventDetails/EventContent/EventContent";
 
 const Event = ({ match }) => {
   const [event, setEvent] = useState({});
@@ -43,7 +44,18 @@ const Event = ({ match }) => {
         <div>
           <EventTopBar event={event} />
 
-          <EventSideBarInfo event={event} />
+          <div className="pd-30 mt-10">
+            <Row>
+              <Col lg="8" md="12">
+                <EventContent event={event} />
+              </Col>
+
+              <Col lg="4" md="12">
+                <EventSideBarInfo event={event} />
+              </Col>
+            </Row>
+          </div>
+
         </div>
       }
     </div>

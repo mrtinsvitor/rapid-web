@@ -12,6 +12,8 @@ import {
 
 import firebaseApp from '../../../../config/firebaseApp';
 
+import defaultAvatar from '../../../../assets/images/defaults/default_avatar.png';
+
 export default class UserActions extends React.Component {
   constructor(props) {
     super(props);
@@ -40,8 +42,8 @@ export default class UserActions extends React.Component {
         <DropdownToggle caret tag={NavLink} className="text-nowrap px-3">
           <img
             className="user-avatar rounded-circle mr-2"
-            src={require("../../../../assets/images/avatars/0.jpg")}
-            alt="User Avatar"
+            src={defaultAvatar}
+            alt="Foto do usuário"
           />{" "}
           <span className="d-none d-md-inline-block">Sierra Brooks</span>
         </DropdownToggle>

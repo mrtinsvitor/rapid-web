@@ -7,7 +7,7 @@ import {
 
 import { formatDate } from '../../../utils/date';
 
-import avatar from "../../../assets/images/avatars/0.jpg";
+import defaultAvatar from "../../../assets/images/defaults/default_avatar.png";
 
 const EventTopBar = ({ event }) => {
   return (
@@ -30,7 +30,7 @@ const EventTopBar = ({ event }) => {
           <div>
             <img
               className="rounded-circle"
-              src={avatar}
+              src={event.professor.profilePhoto || defaultAvatar}
               alt="User avatar"
               width="45"
             />
