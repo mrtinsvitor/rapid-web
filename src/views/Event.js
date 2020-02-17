@@ -20,13 +20,16 @@ import EventSideBarInfo from "../components/EventDetails/EventSideBarInfo";
 
 const Event = ({ match }) => {
   const [event, setEvent] = useState({});
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
 
   useEffect(() => {
     async function getEvents() {
       return api.get(`/events/${match.params.id}`)
         .then(res => {
-          return setEvent(res);
+          // res.coverPhoto = URL.createObjectURL(res.coverPhoto);
+          setEvent(res);
+          setLoading(false);
         })
         .catch(err => setError('Evento não encontrado'));
     }
@@ -36,7 +39,7 @@ const Event = ({ match }) => {
 
   return (
     <div>
-      {!event.id ? <LoadingSpinner /> :
+      {loading ? <LoadingSpinner /> :
         <div>
           <EventTopBar event={event} />
 

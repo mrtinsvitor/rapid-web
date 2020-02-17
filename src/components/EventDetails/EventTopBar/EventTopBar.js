@@ -38,7 +38,9 @@ const EventTopBar = ({ event }) => {
 
           <div style={{ flexDirection: 'column', paddingLeft: '15px' }}>
             <p style={{ margin: 0, fontFamily: 'Poppins-Regular' }}>Criado por</p>
-            <p style={{ margin: 0, fontFamily: 'Poppins-Regular', fontWeight: '600' }}>Fulano de Tal</p>
+            <p style={{ margin: 0, fontFamily: 'Poppins-Regular', fontWeight: '600' }}>
+              {`${event.professor.firstName} ${event.professor.lastName}`}
+            </p>
           </div>
         </div>
 
