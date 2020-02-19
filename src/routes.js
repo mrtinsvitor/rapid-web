@@ -7,7 +7,6 @@ import { DefaultLayout } from "./layouts";
 // Route Views
 import Login from './views/Login';
 import SignUp from "./views/SignUp";
-import PrintQRCode from "./views/PrintQRCode";
 
 import UserProfile from "./views/UserProfile";
 import CreateEvent from "./views/CreateEvent";
@@ -26,10 +25,6 @@ export default {
     {
       path: "/registrar",
       component: SignUp
-    },
-    {
-      path: "/imprimir-qr/:qrCodeValue",
-      component: PrintQRCode
     },
   ],
   closed: [

@@ -75,6 +75,7 @@ const EventTopBar = ({ event }) => {
           open={showModal}
           toggle={() => toggleModal(!showModal)}
           qrCodeValue={event.id}
+          eventName={event.name}
         />
 
       </div>

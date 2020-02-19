@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef } from 'react';
+import ReactToPrint from 'react-to-print';
 import QRCode from 'qrcode.react';
-import { Button, Modal, ModalBody, ModalHeader, ModalFooter } from "shards-react";
+import { Button, Modal, ModalBody, ModalFooter } from "shards-react";
 
-const QRModal = ({ open, toggle, qrCodeValue }) => {
+import PrintableQRCode from '../PrintableQRCode';
+
+const QRModal = ({ open, toggle, qrCodeValue, eventName }) => {
+  const componentRef = useRef();
+
   return (
     <>
       <Modal size="sm" open={open} toggle={toggle} centered>
@@ -12,12 +16,25 @@ const QRModal = ({ open, toggle, qrCodeValue }) => {
             <QRCode value={qrCodeValue} size={160} />
           </div>
         </ModalBody>
-        <ModalFooter>
-          <Link to={`/imprimir-qr/${qrCodeValue}`} target="_blank">Imprimir</Link>
+        <ModalFooter style={{ justifyContent: 'center' }}>
+          <div>
+            <ReactToPrint
+              trigger={() => <Button pill size="lg">Imprimir</Button>}
+              content={() => componentRef.current}
+            />
+            <div style={{ display: 'none' }}>
+              <PrintableQRCode
+                ref={componentRef}
+                qrCodeValue={qrCodeValue}
+                eventName={eventName}
+              />
+            </div>
+          </div>
         </ModalFooter>
       </Modal>
     </>
   );
 }
+
 
 export default QRModal;
