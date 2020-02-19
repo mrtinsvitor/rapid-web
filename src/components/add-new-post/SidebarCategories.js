@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import {
   Card,
@@ -18,12 +18,7 @@ import {
   InputGroupText
 } from "shards-react";
 
-
-const SidebarCategories = ({ title }) => {
-
-  const [startDate, setStartDate] = useState(new Date());
-  const [startHour, setStartHour] = useState(new Date());
-
+const SidebarCategories = ({ register, errors, watch }) => {
   return (
     <>
       <Card small className="mb-3">
@@ -31,46 +26,59 @@ const SidebarCategories = ({ title }) => {
           <ListGroup flush>
             <ListGroupItem className="px-4 pb-3">
               <FormGroup>
-                <label htmlFor="date" className="input-required">Data do Evento</label>
-                <DatePicker
-                  id="date"
+                <label htmlFor="eventDate" className="input-required">Data do Evento</label>
+                {/* <DatePicker
+                  id="eventDate"
+                  name="eventDate"
                   dateFormat="dd/MM/yyyy"
-                  minDate={startDate}
+                  minDate={new Date()}
                   required
-                  selected={startDate}
-                  onChange={date => setStartDate(date)} />
+                  selected={eventDate}
+                  onChange={date => setEventDate(date)}
+                  innerRef={register}
+                  value={eventDate}
+                /> */}
+
+                <input id="eventDate" name="eventDate" type="date" ref={register} />
               </FormGroup>
 
               <FormGroup>
-                <label htmlFor="enrollment-ending">Data Limite para Inscrição</label>
-                <DatePicker
-                  id="enrollment-ending"
+                <label htmlFor="enrollmentEnding">Prazo para Inscrição</label>
+                <input id="enrollmentEnding" name="enrollmentEnding" type="date" ref={register} />
+                {/* <DatePicker
+                  id="enrollmentEnding"
+                  name="enrollmentEnding"
                   dateFormat="dd/MM/yyyy"
-                  minDate={startDate}
-                  required
-                  selected={startDate}
-                  onChange={date => setStartDate(date)} />
+                  minDate={new Date()}
+                  selected={enrollmentEndingDate}
+                  onChange={date => setEnrollmentEnding(date)} /> */}
               </FormGroup>
 
               <FormGroup CardBody>
                 <Row>
                   <Col>
-                    <label htmlFor="opening-hour" className="input-required">Horário de Abertura</label>
-                    <DatePicker
+                    <label htmlFor="openingHour" className="input-required">Horário de Abertura</label>
+                    <input id="openingHour" name="openingHour" type="time" ref={register} />
+
+                    {/* <DatePicker
+                      id="openingHour"
+                      name="openingHour"
                       required
                       selected={startHour}
                       onChange={date => setStartHour(date)}
                       showTimeSelect
                       showTimeSelectOnly
                       timeIntervals={15}
-                      // timeCaption="Time"
                       dateFormat="H:MM"
-                    />
+                    /> */}
                   </Col>
 
                   <Col>
-                    <label htmlFor="ending-hour" className="input-required">Horário de Encerramento</label>
-                    <DatePicker
+                    <label htmlFor="endingHour" className="input-required">Horário de Encerramento</label>
+                    <input id="endingHour" name="endingHour" type="time" ref={register} />
+                    {/* <DatePicker
+                      id="endingHour"
+                      name="endingHour"
                       required
                       selected={startHour}
                       onChange={date => setStartHour(date)}
@@ -79,7 +87,7 @@ const SidebarCategories = ({ title }) => {
                       timeIntervals={15}
                       // timeCaption="Time"
                       dateFormat="H:MM"
-                    />
+                    /> */}
                   </Col>
                 </Row>
               </FormGroup>
