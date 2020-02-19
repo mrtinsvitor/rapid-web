@@ -1,31 +1,39 @@
-import React from "react";
-import { Container, Row, Col } from "shards-react";
+import React, {useEffect} from "react";
+import { useForm } from 'react-hook-form';
+import { Container, Row, Col, Form, Button } from "shards-react";
 
 import PageTitle from "../components/common/PageTitle";
 import Editor from "../components/add-new-post/Editor";
-import SidebarActions from "../components/add-new-post/SidebarActions";
 import SidebarCategories from "../components/add-new-post/SidebarCategories";
 
-const AddNewPost = () => (
-  <Container fluid className="main-content-container px-4 pb-4">
-    {/* Page Header */}
-    <Row noGutters className="page-header py-4">
-      <PageTitle sm="4" title="Novo Evento" className="text-sm-left" />
-    </Row>
+const CreateEvent = () => {
+  const { register, watch, handleSubmit, errors } = useForm();
 
-    <Row>
-      {/* Editor */}
-      <Col lg="8" md="12">
-        <Editor />
-      </Col>
+  const onSubmit = data => {
+    console.log(data);
+  };
 
-      {/* Sidebar Widgets */}
-      <Col lg="4" md="12">
-        {/* <SidebarActions /> */}
-        <SidebarCategories />
-      </Col>
-    </Row>
-  </Container>
-);
+  return (
+    <Container fluid className="main-content-container px-4 pb-4">
+      <Row noGutters className="page-header py-4">
+        <PageTitle sm="4" title="Novo Evento" className="text-sm-left" />
+      </Row>
 
-export default AddNewPost;
+      <Form className="add-new-post" onSubmit={handleSubmit(onSubmit)}>
+        <Row>
+          <Col lg="8" md="12">
+            <Editor register={register} errors={errors} />
+          </Col>
+
+          <Col lg="4" md="12">
+            <SidebarCategories register={register} errors={errors} watch={watch} />
+            <Button type="submit" theme="success" block size="lg">Cadastrar</Button>
+          </Col>
+
+        </Row>
+      </Form>
+    </Container>
+  );
+}
+
+export default CreateEvent;
