@@ -20,12 +20,12 @@ const Editor = ({ register, errors }) => {
     <Card small className="mb-3">
       <CardBody>
         <FormGroup>
-          <label htmlFor="title" className="input-required">Título do Evento</label>
+          <label htmlFor="name" className="input-required">Título do Evento</label>
 
-          {errors.title && <p className="error-input">É necessário digitar um título.</p>}
+          {errors.name && <p className="error-input">É necessário digitar um título.</p>}
           <FormInput
-            id="title"
-            name="title"
+            id="name"
+            name="name"
             size="md"
             className="mb-3"
             placeholder="Digite o título do evento"
@@ -71,7 +71,7 @@ const Editor = ({ register, errors }) => {
         </FormGroup>
 
         <FormGroup>
-          <label htmlFor="cover-image">Foto de Capa</label>
+          <label htmlFor="coverPhoto">Foto de Capa</label>
           <Row>
             <Col>
               <div style={{ textAlign: 'center' }}>
@@ -82,8 +82,8 @@ const Editor = ({ register, errors }) => {
           <Row style={{ marginTop: '20px' }}>
             <Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
               <div className="custom-file mb-3" style={{ width: '60%', }}>
-                <input type="file" className="custom-file-input" id="cover-image" innerRef={register} />
-                <label className="custom-file-label" htmlFor="cover-image">
+                <input type="file" className="custom-file-input" id="coverPhoto" innerRef={register} />
+                <label className="custom-file-label" htmlFor="coverPhoto">
                   Selecionar foto...
                 </label>
               </div>

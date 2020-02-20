@@ -43,8 +43,8 @@ const SidebarCategories = ({ register, errors, watch }) => {
               </FormGroup>
 
               <FormGroup>
-                <label htmlFor="enrollmentEnding">Prazo para Inscrição</label>
-                <input id="enrollmentEnding" name="enrollmentEnding" type="date" ref={register} />
+                <label htmlFor="enrollmentEndingDate">Prazo para Inscrição</label>
+                <input id="enrollmentEndingDate" name="enrollmentEndingDate" type="date" ref={register} />
                 {/* <DatePicker
                   id="enrollmentEnding"
                   name="enrollmentEnding"
@@ -102,26 +102,26 @@ const SidebarCategories = ({ register, errors, watch }) => {
           <ListGroup flush>
             <ListGroupItem className="px-4 pb-3">
               <FormGroup CardBody>
-                <label htmlFor="enrollment-value">Valor de Inscrição</label>
+                <label htmlFor="enrollmentValue">Valor de Inscrição</label>
                 <InputGroup>
                   <InputGroupAddon type="prepend">
                     <InputGroupText>R$</InputGroupText>
                   </InputGroupAddon>
-                  <FormInput id="enrollment-value" value="0" onChange={() => { }} />
+                  <FormInput id="enrollmentValue" name="enrollmentValue" type="number" innerRef={register} />
                 </InputGroup>
               </FormGroup>
 
               <FormGroup CardBody>
                 <Row>
                   <Col sm="12" lg="6">
-                    <label htmlFor="hours">Horas Compl.</label>
+                    <label htmlFor="complementaryHours">Horas Compl.</label>
                     <InputGroup>
                       <InputGroupAddon type="prepend">
                         <InputGroupText>
                           <i className="material-icons">access_time</i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <FormInput id="hours" type="number" value="0" onChange={() => { }} />
+                      <FormInput id="complementaryHours" name="complementaryHours" type="number" innerRef={register} />
                     </InputGroup>
                   </Col>
 
@@ -133,7 +133,7 @@ const SidebarCategories = ({ register, errors, watch }) => {
                           <i className="material-icons">group</i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <FormInput id="vacancy" type="number" value="0" onChange={() => { }} />
+                      <FormInput id="vacancy" name="vacancy" type="number" innerRef={register} />
                     </InputGroup>
                   </Col>
                 </Row>
