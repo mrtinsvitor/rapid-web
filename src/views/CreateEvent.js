@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { Container, Row, Col, Form, Button } from "shards-react";
 
@@ -6,11 +6,47 @@ import PageTitle from "../components/common/PageTitle";
 import Editor from "../components/add-new-post/Editor";
 import SidebarCategories from "../components/add-new-post/SidebarCategories";
 
+import api from '../utils/api';
+
 const CreateEvent = () => {
+  const [courseList, setCourseList] = useState([]);
+  const [locationList, setLocationList] = useState([]);
+
   const { register, watch, handleSubmit, errors } = useForm();
 
-  const onSubmit = data => {
-    console.log(data);
+  useEffect(() => {
+    async function getCourses() {
+      try {
+        const courses = await api.get('/courses');
+        return setCourseList(courses);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getCourses();
+  }, []);
+
+  useEffect(() => {
+    async function getLocations() {
+      try {
+        const locations = await api.get('/locals');
+        return setLocationList(locations);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getLocations();
+  }, []);
+
+  const onSubmit = async data => {
+    try {
+      const response = await api.post('/events/create-event', data);
+      console.log('response', response);
+    } catch (error) {
+      console.log('error', error);
+    }
   };
 
   return (
@@ -22,7 +58,7 @@ const CreateEvent = () => {
       <Form className="add-new-post" onSubmit={handleSubmit(onSubmit)}>
         <Row>
           <Col lg="8" md="12">
-            <Editor register={register} errors={errors} />
+            <Editor register={register} errors={errors} courseList={courseList} locationList={locationList} watch={watch} />
           </Col>
 
           <Col lg="4" md="12">

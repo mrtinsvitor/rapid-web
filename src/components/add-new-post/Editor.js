@@ -15,7 +15,15 @@ import {
 
 import placeholderEventImage from '../../assets/images/event-image-placeholder.png';
 
-const Editor = ({ register, errors }) => {
+const Editor = ({ register, watch, errors, courseList, locationList }) => {
+  const courseId = watch('courseId');
+
+  const addCourse = () => {
+    console.log('cousr', courseId);
+
+    console.log(courseList.find((course, i) => course.id == courseId));
+  }
+
   return (
     <Card small className="mb-3">
       <CardBody>
@@ -61,40 +69,57 @@ const Editor = ({ register, errors }) => {
         </FormGroup>
 
         <FormGroup>
-          <label htmlFor="course" className="input-required">Cursos</label>
+          <label htmlFor="local" className="input-required">Localização</label>
 
-          {errors.title && <p className="error-input">É necessário selecionar pelo menos um curso.</p>}
-          <FormSelect id="course" name="course" size="md" innerRef={register({ required: true })}>
-            <option value="first">This is the first option</option>
-            <option value="second">This is the second option</option>
+          {errors.title && <p className="error-input">É necessário selecionar a localização.</p>}
+          <FormSelect id="local" name="localId" size="md" innerRef={register({ required: true })}>
+            {locationList.map((location, i) =>
+              <option key={i} value={location.id}>{location.name}</option>
+            )}
           </FormSelect>
         </FormGroup>
 
         <FormGroup>
-          <label htmlFor="coverPhoto">Foto de Capa</label>
-          <Row>
-            <Col>
-              <div style={{ textAlign: 'center' }}>
-                <img src={placeholderEventImage} alt="Foto de Capa do Evento" style={{ width: '40%' }} />
-              </div>
-            </Col>
-          </Row>
-          <Row style={{ marginTop: '20px' }}>
-            <Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
-              <div className="custom-file mb-3" style={{ width: '60%', }}>
-                <input type="file" className="custom-file-input" id="coverPhoto" innerRef={register} />
-                <label className="custom-file-label" htmlFor="coverPhoto">
-                  Selecionar foto...
-                </label>
-              </div>
-              <div>
-                <Button theme="danger" pill outline>Remover</Button>
-              </div>
-            </Col>
-          </Row>
+          <label htmlFor="course" className="input-required">Cursos</label>
+
+          {errors.title && <p className="error-input">É necessário selecionar pelo menos um curso.</p>}
+          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+            <FormSelect id="course" name="courseId" size="md" style={{ width: '80%' }} innerRef={register({ required: true })}>
+              {courseList.map((course, i) =>
+                <option key={i} value={course.id}>{course.name}</option>
+              )}
+            </FormSelect>
+
+            <Button type="button" pill onClick={() => addCourse()}>Adicionar</Button>
+
+          </div>
         </FormGroup>
+
+      <FormGroup>
+        <label htmlFor="coverPhoto">Foto de Capa</label>
+        <Row>
+          <Col>
+            <div style={{ textAlign: 'center' }}>
+              <img src={placeholderEventImage} alt="Foto de Capa do Evento" style={{ width: '40%' }} />
+            </div>
+          </Col>
+        </Row>
+        <Row style={{ marginTop: '20px' }}>
+          <Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+            <div className="custom-file mb-3" style={{ width: '60%', }}>
+              <input type="file" className="custom-file-input" id="coverPhoto" innerRef={register} />
+              <label className="custom-file-label" htmlFor="coverPhoto">
+                Selecionar foto...
+                </label>
+            </div>
+            <div>
+              <Button theme="danger" pill outline>Remover</Button>
+            </div>
+          </Col>
+        </Row>
+      </FormGroup>
       </CardBody>
-    </Card>
+    </Card >
   );
 }
 
