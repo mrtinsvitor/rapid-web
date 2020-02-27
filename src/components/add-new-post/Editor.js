@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from 'react-hook-form';
 import {
   Card,
@@ -10,18 +10,34 @@ import {
   Row,
   Col,
   Button,
-  FormSelect
+  FormSelect,
+  ListGroup,
+  ListGroupItem
 } from "shards-react";
 
 import placeholderEventImage from '../../assets/images/event-image-placeholder.png';
 
 const Editor = ({ register, watch, errors, courseList, locationList }) => {
+  const [selectedCourses, setSelectedCourses] = useState([]);
   const courseId = watch('courseId');
 
   const addCourse = () => {
-    console.log('cousr', courseId);
+    if (courseId > 0) {
 
-    console.log(courseList.find((course, i) => course.id == courseId));
+      if (selectedCourses.find(course => courseId == course.id)) {
+        return;
+      }
+
+      const course = courseList.find(course => courseId == course.id);
+
+      if (course)
+
+        return setSelectedCourses([...selectedCourses, course]);
+    }
+  }
+
+  const removeCourse = (id) => {
+    setSelectedCourses(selectedCourses.filter(course => course.id !== id));
   }
 
   return (
@@ -83,41 +99,74 @@ const Editor = ({ register, watch, errors, courseList, locationList }) => {
           <label htmlFor="course" className="input-required">Cursos</label>
 
           {errors.title && <p className="error-input">É necessário selecionar pelo menos um curso.</p>}
-          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-            <FormSelect id="course" name="courseId" size="md" style={{ width: '80%' }} innerRef={register({ required: true })}>
-              {courseList.map((course, i) =>
-                <option key={i} value={course.id}>{course.name}</option>
-              )}
-            </FormSelect>
 
-            <Button type="button" pill onClick={() => addCourse()}>Adicionar</Button>
+          <div style={{ marginBottom: '15px' }}>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginBottom: '20px'
+              }}
+            >
+              <FormSelect id="course" name="courseId" size="md" style={{ width: '80%' }} innerRef={register({ required: true })}>
+                <option invalid>Selecione um curso</option>
+                {courseList.map((course, i) =>
+                  <option key={i} value={course.id}>{course.name}</option>
+                )}
+              </FormSelect>
 
+              <Button
+                type="button"
+                pill
+                onClick={() => addCourse()}
+                disabled={isNaN(parseFloat(courseId)) || selectedCourses.find(course => courseId == course.id)}
+              >
+                Adicionar
+              </Button>
+            </div>
+
+            {selectedCourses.length > 0 &&
+              <ListGroup small style={{ overflowY: 'scroll', maxHeight: '150px', marginBottom: '15px' }}>
+                {selectedCourses.map((course, i) =>
+                  <div key={i}>
+                    <ListGroupItem>
+                      <span onClick={() => removeCourse(course.id)}>
+                        <i className="far fa-trash-alt" style={{ float: 'right', fontSize: '20px', color: '#ff0000' }}></i>
+                      </span>
+                      <span>{course.name}</span>
+
+                    </ListGroupItem>
+                  </div>
+                )}
+              </ListGroup>
+            }
           </div>
         </FormGroup>
 
-      <FormGroup>
-        <label htmlFor="coverPhoto">Foto de Capa</label>
-        <Row>
-          <Col>
-            <div style={{ textAlign: 'center' }}>
-              <img src={placeholderEventImage} alt="Foto de Capa do Evento" style={{ width: '40%' }} />
-            </div>
-          </Col>
-        </Row>
-        <Row style={{ marginTop: '20px' }}>
-          <Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
-            <div className="custom-file mb-3" style={{ width: '60%', }}>
-              <input type="file" className="custom-file-input" id="coverPhoto" innerRef={register} />
-              <label className="custom-file-label" htmlFor="coverPhoto">
-                Selecionar foto...
+        <FormGroup>
+          <label htmlFor="coverPhoto">Foto de Capa</label>
+          <Row>
+            <Col>
+              <div style={{ textAlign: 'center' }}>
+                <img src={placeholderEventImage} alt="Foto de Capa do Evento" style={{ width: '40%' }} />
+              </div>
+            </Col>
+          </Row>
+          <Row style={{ marginTop: '20px' }}>
+            <Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+              <div className="custom-file mb-3" style={{ width: '60%', }}>
+                <input type="file" className="custom-file-input" id="coverPhoto" ref={register} />
+                <label className="custom-file-label" htmlFor="coverPhoto">
+                  Selecionar foto...
                 </label>
-            </div>
-            <div>
-              <Button theme="danger" pill outline>Remover</Button>
-            </div>
-          </Col>
-        </Row>
-      </FormGroup>
+              </div>
+              <div>
+                <Button theme="danger" pill outline>Remover</Button>
+              </div>
+            </Col>
+          </Row>
+        </FormGroup>
       </CardBody>
     </Card >
   );
