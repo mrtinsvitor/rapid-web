@@ -44,7 +44,7 @@ const SidebarCategories = ({ register, errors, watch }) => {
 
               <FormGroup>
                 <label htmlFor="enrollmentEndingDate">Prazo para Inscrição</label>
-                <input id="enrollmentEndingDate" name="enrollmentEndingDate" type="date" ref={register} />
+                <input id="enrollmentEndingDate" name="enrollmentEndingDate" className="form-control" type="date" ref={register} />
                 {/* <DatePicker
                   id="enrollmentEnding"
                   name="enrollmentEnding"
@@ -54,7 +54,7 @@ const SidebarCategories = ({ register, errors, watch }) => {
                   onChange={date => setEnrollmentEnding(date)} /> */}
               </FormGroup>
 
-              <FormGroup CardBody>
+              <FormGroup>
                 <Row>
                   <Col>
                     <label htmlFor="openingHour" className="input-required">Horário de Abertura</label>
@@ -101,7 +101,7 @@ const SidebarCategories = ({ register, errors, watch }) => {
         <CardBody className="p-0">
           <ListGroup flush>
             <ListGroupItem className="px-4 pb-3">
-              <FormGroup CardBody>
+              <FormGroup>
                 <label htmlFor="enrollmentValue">Valor de Inscrição</label>
                 <InputGroup>
                   <InputGroupAddon type="prepend">
@@ -111,7 +111,7 @@ const SidebarCategories = ({ register, errors, watch }) => {
                 </InputGroup>
               </FormGroup>
 
-              <FormGroup CardBody>
+              <FormGroup>
                 <Row>
                   <Col sm="12" lg="6">
                     <label htmlFor="complementaryHours">Horas Compl.</label>
