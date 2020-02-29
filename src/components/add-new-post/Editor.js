@@ -17,29 +17,16 @@ import {
 
 import placeholderEventImage from '../../assets/images/event-image-placeholder.png';
 
-const Editor = ({ register, watch, errors, courseList, locationList }) => {
-  const [selectedCourses, setSelectedCourses] = useState([]);
-  const courseId = watch('courseId');
-
-  const addCourse = () => {
-    if (courseId > 0) {
-
-      if (selectedCourses.find(course => courseId == course.id)) {
-        return;
-      }
-
-      const course = courseList.find(course => courseId == course.id);
-
-      if (course)
-
-        return setSelectedCourses([...selectedCourses, course]);
-    }
-  }
-
-  const removeCourse = (id) => {
-    setSelectedCourses(selectedCourses.filter(course => course.id !== id));
-  }
-
+const Editor = ({
+  register,
+  errors,
+  courseList,
+  locationList,
+  addCourse,
+  removeCourse,
+  selectedCourses,
+  courseId,
+}) => {
   return (
     <Card small className="mb-3">
       <CardBody>

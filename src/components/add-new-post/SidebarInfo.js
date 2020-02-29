@@ -1,24 +1,19 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import {
   Card,
-  CardHeader,
   CardBody,
   ListGroup,
   ListGroupItem,
-  Button,
   InputGroup,
   InputGroupAddon,
-  FormCheckbox,
   FormInput,
-  DatePicker,
   FormGroup,
   Col,
   Row,
   InputGroupText
 } from "shards-react";
 
-const SidebarCategories = ({ register, errors, watch }) => {
+const SidebarInfo = ({ register, errors, watch }) => {
   return (
     <>
       <Card small className="mb-3">
@@ -39,7 +34,7 @@ const SidebarCategories = ({ register, errors, watch }) => {
                   value={eventDate}
                 /> */}
 
-                <input id="eventDate" name="eventDate" type="date" ref={register} />
+                <input id="eventDate" name="eventDate" type="date" className="form-control" ref={register} />
               </FormGroup>
 
               <FormGroup>
@@ -58,7 +53,7 @@ const SidebarCategories = ({ register, errors, watch }) => {
                 <Row>
                   <Col>
                     <label htmlFor="openingHour" className="input-required">Horário de Abertura</label>
-                    <input id="openingHour" name="openingHour" type="time" ref={register} />
+                    <input id="openingHour" name="openingHour" defaultValue="00:00" className="form-control" type="time" ref={register} />
 
                     {/* <DatePicker
                       id="openingHour"
@@ -75,7 +70,7 @@ const SidebarCategories = ({ register, errors, watch }) => {
 
                   <Col>
                     <label htmlFor="endingHour" className="input-required">Horário de Encerramento</label>
-                    <input id="endingHour" name="endingHour" type="time" ref={register} />
+                    <input id="endingHour" name="endingHour" type="time" defaultValue="00:00" className="form-control" ref={register} />
                     {/* <DatePicker
                       id="endingHour"
                       name="endingHour"
@@ -147,4 +142,4 @@ const SidebarCategories = ({ register, errors, watch }) => {
   );
 }
 
-export default SidebarCategories;
+export default SidebarInfo;
