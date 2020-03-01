@@ -19,11 +19,16 @@ export default class UserActions extends React.Component {
     super(props);
 
     this.state = {
-      visible: false
+      visible: false,
+      user: {},
     };
 
     this.toggleUserActions = this.toggleUserActions.bind(this);
     this.signOut = this.signOut.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({ user: JSON.parse(localStorage.getItem('@user')) });
   }
 
   toggleUserActions() {
@@ -33,6 +38,7 @@ export default class UserActions extends React.Component {
   }
 
   signOut() {
+    localStorage.clear();
     return firebaseApp.auth().signOut();
   }
 
@@ -42,10 +48,10 @@ export default class UserActions extends React.Component {
         <DropdownToggle caret tag={NavLink} className="text-nowrap px-3">
           <img
             className="user-avatar rounded-circle mr-2"
-            src={defaultAvatar}
+            src={this.state.user.profilePhoto || defaultAvatar}
             alt="Foto do usuário"
           />{" "}
-          <span className="d-none d-md-inline-block">Sierra Brooks</span>
+          <span className="d-none d-md-inline-block">{this.state.user.firstName} {this.state.user.lastName}</span>
         </DropdownToggle>
         <Collapse tag={DropdownMenu} right small open={this.state.visible}>
           <DropdownItem tag={Link} to="user-profile">

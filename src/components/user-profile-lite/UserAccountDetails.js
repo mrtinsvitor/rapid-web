@@ -13,10 +13,10 @@ import {
   Button
 } from "shards-react";
 
-const UserAccountDetails = ({ title }) => (
+const UserAccountDetails = ({ user }) => (
   <Card small className="mb-4">
     <CardHeader className="border-bottom">
-      <h6 className="m-0">{title}</h6>
+      <h6 className="m-0">Dados</h6>
     </CardHeader>
     <ListGroup flush>
       <ListGroupItem className="p-3">
@@ -30,7 +30,7 @@ const UserAccountDetails = ({ title }) => (
                   <FormInput
                     id="feFirstName"
                     placeholder="Primeiro Nome"
-                    value="Sierra"
+                    value={user.firstName}
                     onChange={() => {}}
                   />
                 </Col>
@@ -40,7 +40,7 @@ const UserAccountDetails = ({ title }) => (
                   <FormInput
                     id="feLastName"
                     placeholder="Último Nome"
-                    value="Brooks"
+                    value={user.lastName}
                     onChange={() => {}}
                   />
                 </Col>
@@ -53,7 +53,7 @@ const UserAccountDetails = ({ title }) => (
                     type="email"
                     id="feEmail"
                     placeholder="Endereço de Email"
-                    value="sierra@example.com"
+                    value={user.email}
                     onChange={() => {}}
                     autoComplete="email"
                   />
@@ -65,7 +65,7 @@ const UserAccountDetails = ({ title }) => (
                     type="password"
                     id="fePassword"
                     placeholder="Senha"
-                    value="EX@MPL#P@$$w0RD"
+                    value="nada"
                     onChange={() => {}}
                     autoComplete="current-password"
                   />
