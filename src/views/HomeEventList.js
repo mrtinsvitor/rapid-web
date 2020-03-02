@@ -20,7 +20,6 @@ const HomeEventList = (props) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log('home')
     async function getEvents() {
       return api.get('/events')
         .then(res => {
