@@ -9,42 +9,57 @@ import api from '../../utils/api';
 export const AuthContext = React.createContext();
 
 export const FirebaseAuthProvider = ({ children, history }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [firebaseUser, setFirebaseUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
 
   useEffect(() => {
-    return firebaseApp.auth().onAuthStateChanged(async user => {
-      if (user) {
-        setCurrentUser(user);
+    getUser();
+  }, []);
 
-        if (!localStorage.getItem('@user')) {
-          try {
-            const professor = await api.get('/professors/find-by-email', { email: user.email });
-            console.log('pro', professor)
-            localStorage.setItem('@user', JSON.stringify(professor));
-          } catch (e) {
-            console.log('e', e)
-          }
-        }
+  useEffect(() => {
+    if (firebaseUser) {
+      getProfessor();
+    }
+  }, [firebaseUser])
 
-        setLoadingUser(false);
-        return;
+  const getUser = async () => {
+    await firebaseApp.auth().onAuthStateChanged(async auth => {
+      if (!auth) {
+        return redirectLogin();
       }
 
-      setLoadingUser(false);
-      return history.push('/login');
+      return setFirebaseUser(auth);
     });
-  }, []);
+  }
+
+  const getProfessor = async () => {
+    try {
+      const professor = await api.get('/professors/find-by-email', { email: firebaseUser.email });
+
+      if (!professor) throw new Error('E-mail ou senha incorretos, tente novamente');
+
+      localStorage.setItem('@user', JSON.stringify(professor));
+      return setLoadingUser(false);
+    } catch (e) {
+      redirectLogin(e);
+    }
+  }
+
+  const redirectLogin = (errorMsg) => {
+    localStorage.clear();
+    firebaseApp.auth().signOut();
+    return history.push('/login', { errorMsg });
+  }
 
   return (
     <AuthContext.Provider
       value={{
-        currentUser
+        firebaseUser
       }}
     >
       {loadingUser && <LoadingSpinner />}
 
-      {!loadingUser && currentUser && children}
+      {!loadingUser && firebaseUser && children}
     </AuthContext.Provider>
   )
 };

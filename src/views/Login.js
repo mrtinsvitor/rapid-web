@@ -9,10 +9,14 @@ import LoadingSpinner from "../components/utils/LoadingSpinner";
 import "../styles/main.css";
 import "../styles/util.css";
 
-const Login = (props) => {
+const Login = ({ history, location }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [loadingUser, setLoadingUser] = useState(true);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    return getErrorMsg();
+  }, []);
 
   useEffect(() => {
     return validateUser();
@@ -20,12 +24,11 @@ const Login = (props) => {
 
   const validateUser = () => (
     firebaseApp.auth().onAuthStateChanged(user => {
+      setLoadingUser(false);
       if (user) {
-        setLoadingUser(false);
-        return props.history.push('/eventos');
+        return history.push('/eventos');
       }
 
-      setLoadingUser(false);
       return;
     })
   )
@@ -43,14 +46,19 @@ const Login = (props) => {
           .signInWithEmailAndPassword(email.value.trim(), password.value);
 
         setLoading(false);
-        return props.history.push("/eventos");
+        return history.push("/eventos");
       } catch (error) {
         setLoading(false);
         setErrorMessage(error);
       }
     },
-    [props.history]
+    [history]
   );
+
+  const getErrorMsg = () => {
+    if (location.state && location.state.errorMsg)
+      return setErrorMessage(location.state.errorMsg);
+  }
 
   return (
     <div>
@@ -65,7 +73,7 @@ const Login = (props) => {
                   <form className="login100-form validate-form" onSubmit={handleLogin}>
                     <span className="login100-form-title p-b-55">
                       Área do Professor
-              </span>
+                    </span>
 
                     {errorMessage &&
                       <div style={{ margin: '0 auto', marginBottom: '5px' }}>
