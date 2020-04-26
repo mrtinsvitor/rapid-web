@@ -35,12 +35,12 @@ class SidebarMainNavbar extends React.Component {
                 id="main-logo"
                 className="d-inline-block align-top mr-1"
                 style={{ maxWidth: "25px" }}
-                src={require("../../../assets/images/shards-dashboards-logo.svg")}
-                alt="Eventos Unigranrio"
+                src={require("../../../assets/images/rappid-logo.png")}
+                alt="Rappid"
               />
               {!hideLogoText && (
                 <span className="d-none d-md-inline ml-1">
-                  Eventos Unigranrio
+                  Rappid
                 </span>
               )}
             </div>
