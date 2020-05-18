@@ -43,7 +43,7 @@ const UserActions = ({ history }) => {
         <span className="d-none d-md-inline-block">{user.firstName} {user.lastName}</span>
       </DropdownToggle>
       <Collapse tag={DropdownMenu} right small open={visible}>
-        <DropdownItem tag={Link} to="user-profile">
+        <DropdownItem tag={Link} to="perfil">
           <i className="material-icons">&#xE7FD;</i> Perfil
           </DropdownItem>
         <DropdownItem divider />
