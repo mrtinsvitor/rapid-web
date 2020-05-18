@@ -15,11 +15,11 @@ export default function () {
       htmlBefore: '<i class="material-icons">playlist_add</i>',
       to: "/cadastrar-evento",
     },
-    {
-      title: "Forms & Components",
-      htmlBefore: '<i class="material-icons">view_module</i>',
-      to: "/components-overview",
-    },
+    // {
+    //   title: "Forms & Components",
+    //   htmlBefore: '<i class="material-icons">view_module</i>',
+    //   to: "/components-overview",
+    // },
     {
       title: "Perfil",
       htmlBefore: '<i class="material-icons">person</i>',
