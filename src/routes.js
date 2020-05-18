@@ -5,36 +5,70 @@ import { Redirect } from "react-router-dom";
 import { DefaultLayout } from "./layouts";
 
 // Route Views
-import UserProfileLite from "./views/UserProfileLite";
-import AddNewPost from "./views/AddNewPost";
-import ComponentsOverview from "./views/ComponentsOverview";
-import Events from "./views/Events";
+import Login from './views/Login';
+import SignUp from "./views/SignUp";
 
-export default [
-  {
-    path: "/",
-    exact: true,
-    layout: DefaultLayout,
-    component: () => <Redirect to="/events" />
-  },
-  {
-    path: "/events",
-    layout: DefaultLayout,
-    component: Events
-  },
-  {
-    path: "/user-profile-lite",
-    layout: DefaultLayout,
-    component: UserProfileLite
-  },
-  {
-    path: "/add-new-post",
-    layout: DefaultLayout,
-    component: AddNewPost
-  },
-  {
-    path: "/components-overview",
-    layout: DefaultLayout,
-    component: ComponentsOverview
-  },
-];
+import UserProfile from "./views/UserProfile";
+import CreateEvent from "./views/CreateEvent";
+import ComponentsOverview from "./views/ComponentsOverview";
+import HomeEventList from "./views/HomeEventList";
+import AllEvents from "./views/AllEvents";
+import MyEvents from "./views/MyEvents";
+import Event from "./views/Event";
+
+export default {
+  open: [
+    {
+      path: "/login",
+      component: Login
+    },
+    {
+      path: "/registrar",
+      component: SignUp
+    },
+  ],
+  closed: [
+    {
+      path: "/",
+      exact: true,
+      layout: DefaultLayout,
+      component: () => <Redirect to="/login" />
+    },
+
+    {
+      path: "/eventos",
+      layout: DefaultLayout,
+      component: HomeEventList
+    },
+    {
+      path: "/meus-eventos",
+      layout: DefaultLayout,
+      component: MyEvents
+    },
+    {
+      path: "/todos-eventos",
+      layout: DefaultLayout,
+      component: AllEvents
+    },
+    {
+      path: "/cadastrar-evento",
+      layout: DefaultLayout,
+      component: CreateEvent
+    },
+    {
+      path: "/detalhes-evento/:id",
+      layout: DefaultLayout,
+      component: Event
+    },
+    {
+      path: "/components-overview",
+      layout: DefaultLayout,
+      component: ComponentsOverview
+    },
+    {
+      path: "/perfil",
+      layout: DefaultLayout,
+      component: UserProfile
+    },
+  ]
+};

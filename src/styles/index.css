@@ -1,0 +1,45 @@
+.input-required:after {
+  content: " *";
+  color: red;
+}
+
+.event-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* number of lines to show */
+}
+
+.pd-30 {
+  padding: 30px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal {
+  z-index: 9999 !important;
+}
+
+.h-100-vh {
+  height: 100vh;
+}
+
+.error-input {
+  font-size: 12px;
+  color: #ff0000;
+  margin-bottom: 5px;
+}
