@@ -10,7 +10,7 @@ import SidebarInfo from "../components/add-new-post/SidebarInfo";
 import EventSubmitModal from "../components/EventSubmitModal/EventSubmitModal";
 
 const CreateEvent = ({ history }) => {
-  const [courseList, setCourseList] = useState([]);
+  const [studyFieldList, setStudyFieldList] = useState([]);
   const [locationList, setLocationList] = useState([]);
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [submitModal, toggleSubmitModal] = useState(false);
@@ -18,19 +18,19 @@ const CreateEvent = ({ history }) => {
   const [alert, setAlert] = useState({ visible: false });
 
   const { register, watch, handleSubmit, errors } = useForm();
-  const courseId = watch('courseId');
+  const studyFieldId = watch('studyFieldId');
 
   useEffect(() => {
-    async function getCourses() {
+    async function getStudyFields() {
       try {
-        const courses = await api.get('/courses');
-        return setCourseList(courses);
+        const courses = await api.get('/study-fields');
+        return setStudyFieldList(courses);
       } catch (error) {
         console.log(error);
       }
     }
 
-    getCourses();
+    getStudyFields();
   }, []);
 
   useEffect(() => {
@@ -49,7 +49,6 @@ const CreateEvent = ({ history }) => {
   const onSubmit = async data => {
     try {
       data.professorId = '1';
-      data.courseList = selectedCourses;
 
       const response = await api.post('/events/create-event', data);
       await setCreatedEvent(response.data);
@@ -59,23 +58,23 @@ const CreateEvent = ({ history }) => {
     }
   };
 
-  const addCourse = () => {
-    if (courseId > 0) {
+  // const addCourse = () => {
+  //   if (courseId > 0) {
 
-      if (selectedCourses.find(course => courseId == course.id)) {
-        return;
-      }
+  //     if (selectedCourses.find(course => courseId == course.id)) {
+  //       return;
+  //     }
 
-      const course = courseList.find(course => courseId == course.id);
+  //     const course = courseList.find(course => courseId == course.id);
 
-      if (course)
-        return setSelectedCourses([...selectedCourses, course]);
-    }
-  }
+  //     if (course)
+  //       return setSelectedCourses([...selectedCourses, course]);
+  //   }
+  // }
 
-  const removeCourse = (id) => {
-    setSelectedCourses(selectedCourses.filter(course => course.id !== id));
-  }
+  // const removeCourse = (id) => {
+  //   setSelectedCourses(selectedCourses.filter(course => course.id !== id));
+  // }
 
   const dismissAlert = (alert) => {
     return setAlert({ ...alert, visible: false });
@@ -99,12 +98,10 @@ const CreateEvent = ({ history }) => {
             <Editor
               register={register}
               errors={errors}
-              courseList={courseList}
+              studyFieldList={studyFieldList}
               locationList={locationList}
-              addCourse={addCourse}
-              removeCourse={removeCourse}
               selectedCourses={selectedCourses}
-              courseId={courseId}
+              studyFieldId={studyFieldId}
             />
           </Col>
 
