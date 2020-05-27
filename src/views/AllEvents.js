@@ -18,66 +18,46 @@ import {
 
 import PageTitle from "../components/common/PageTitle";
 
-const BlogPosts = () => {
-  const posts = [
-    {
-      author: "John James",
-      title: "Had denoting properly jointure which well books beyond",
-      body:
-        "In said to of poor full be post face snug. Introduced imprudence see say unpleasing devonshire acceptance son. Exeter longer wisdom work...",
-      date: "29 February 2019",
-      curso: 'Sistemas de Informação',
-      finalizado: true,
-    },
-    {
-      author: "John James",
-      title: "Husbands ask repeated resolved but laughter debating",
-      body:
-        "It abode words began enjoy years no do ﻿no. Tried spoil as heart visit blush or. Boy possible blessing sensible set but margaret interest. Off tears...",
-      date: "29 February 2019",
-      curso: 'Medicina'
-    },
-    {
-      author: "John James",
-      title:
-        "Instantly gentleman contained belonging exquisite now direction",
-      body:
-        "West room at sent if year. Numerous indulged distance old law you. Total state as merit court green decay he. Steepest merit checking railway...",
-      date: "29 February 2019",
-      curso: 'Direito',
-      finalizado: true,
-    },
-    {
-      author: "John James",
-      title:
-        "Instantly gentleman contained belonging exquisite now direction",
-      body:
-        "West room at sent if year. Numerous indulged distance old law you. Total state as merit court green decay he. Steepest merit checking railway...",
-      date: "29 February 2019",
-      curso: 'Biologia'
-    },
-    {
-      author: "John James",
-      title:
-        "Instantly gentleman contained belonging exquisite now direction",
-      body:
-        "West room at sent if year. Numerous indulged distance old law you. Total state as merit court green decay he. Steepest merit checking railway...",
-      date: "29 February 2019",
-      curso: 'Administração'
-    },
-    {
-      author: "John James",
-      title:
-        "Instantly gentleman contained belonging exquisite now direction",
-      body:
-        "West room at sent if year. Numerous indulged distance old law you. Total state as merit court green decay he. Steepest merit checking railway...",
-      date: "29 February 2019",
-      curso: 'Administração'
-    }];
+import api from '../utils/api';
+import { formatDate, formatTime } from '../utils/date';
+
+export default ({ }) => {
 
   const [startDate, setStartDate] = useState(new Date());
-  const [PostsListThree, setPostsListThree] = useState(posts);
   const [checked, setChecked] = useState();
+  const [eventList, setEventList] = useState([]);
+  const [fieldList, setFieldList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  React.useEffect(() => {
+    async function getEvents() {
+      return api.get('/events')
+        .then(res => {
+          setLoading(false);
+
+          const events = res
+            .filter(event => new Date(event.eventDate) >= new Date())
+            .sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate));
+          return setEventList(events);
+        })
+        .catch(err => setLoading(false));
+    }
+
+    getEvents();
+  }, []);
+
+  React.useEffect(() => {
+    async function getFields() {
+      return api.get('/study-fields')
+        .then(res => {
+          setLoading(false);
+          return setFieldList(res);
+        })
+        .catch(err => setLoading(false));
+    }
+
+    getFields();
+  }, []);
 
   return (
     <Container fluid className="main-content-container px-4">
@@ -88,34 +68,34 @@ const BlogPosts = () => {
 
       <Row>
         <Col lg="8" md="12">
-          <strong className="d-block m-1" style={{ fontSize: '18px', color: '#007bff' }}>Segunda, 12 de Maio</strong>
-          {PostsListThree.map((post, idx) => (
+          {/* <strong className="d-block m-1" style={{ fontSize: '18px', color: '#007bff' }}>{formatDate(el.eventDate)}</strong> */}
+          {eventList.map((el, idx) => (
             <Row style={{ padding: '10px 20px' }}>
               <Card
                 className="card-post"
-                style={{ backgroundColor: post.finalizado ? 'rgba(214, 214, 214, 0.6)' : '#fff', width: '100%', margin: '0 auto' }}
+                style={{ backgroundColor: '#fff', width: '100%', margin: '0 auto' }}
               >
                 <CardBody style={{ padding: '10px', }}>
                   <Row>
                     <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
                       <div style={{ flexDirection: 'column', alignSelf: 'center', display: 'block', width: '13%' }}>
-                        <p style={{ textAlign: 'center', marginBottom: 0, fontSize: '18px' }}>09:00</p>
+                        <p style={{ textAlign: 'center', marginBottom: 0, fontSize: '18px' }}>{formatTime(el.openingHour)}</p>
                       </div>
                       <div style={{ alignSelf: 'center' }}>
-                        <p className="title mb-1">{post.title}</p>
+                        <span style={{ color: '#007bff' }}>{formatDate(el.eventDate)}</span>
+                        <p className="title mb-1">{el.name}</p>
 
                         <Badge
                           // theme={idx % 2 === 0 ? "primary" : "success"}
                           theme="primary"
                           className="mb-2"
-                          style={{ backgroundColor: post.finalizado ? '#4e545b' : null }}
                         >
-                          {post.curso}
+                          {el.studyField.name}
                         </Badge>
 
                         <div style={{}}>
                           <i className="material-icons">pin_drop</i>
-                          <p className="card-text text-muted" style={{ display: 'inline-block', paddingLeft: '5px', marginBottom: 0, fontSize: '14px' }}>Cinema 2 - Shopping Unigranrio</p>
+                          <p className="card-text text-muted" style={{ display: 'inline-block', paddingLeft: '5px', marginBottom: 0, fontSize: '14px' }}>{el.local.name}</p>
                         </div>
 
                         <div>
@@ -143,16 +123,14 @@ const BlogPosts = () => {
                     <div>
                       <InputGroup className="mb-3">
                         <FormSelect>
-                          <option>Todos os Cursos</option>
-                          <option>Administração</option>
-                          <option>Biologia</option>
-                          <option>Sistemas de Informação</option>
+                          <option>Todas as áreas</option>
+                          {fieldList.map((el, i) => <option key={i}>{el.name}</option>)}
                         </FormSelect>
                       </InputGroup>
                     </div>
                   </div>
 
-                  <div className="mb-4">
+                  {/* <div className="mb-4">
                     <strong className="text-muted d-block mb-2">
                       Mostrar Eventos Finalizados
                     </strong>
@@ -162,7 +140,7 @@ const BlogPosts = () => {
                       onChange={() => setChecked(!checked)}>
                       Finalizado
                     </FormCheckbox>
-                  </div>
+                  </div> */}
 
                   <div className="mb-3">
                     <strong className="text-muted d-block mb-2">
@@ -183,5 +161,3 @@ const BlogPosts = () => {
     </Container>
   );
 }
-
-export default BlogPosts;
