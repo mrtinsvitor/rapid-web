@@ -104,7 +104,7 @@ const Editor = ({
           </div>
         </FormGroup>
 
-        <FormGroup>
+        {/* <FormGroup>
           <label htmlFor="coverPhoto">Foto de Capa</label>
           <Row>
             <Col>
@@ -126,7 +126,7 @@ const Editor = ({
               </div>
             </Col>
           </Row>
-        </FormGroup>
+        </FormGroup> */}
       </CardBody>
     </Card >
   );
