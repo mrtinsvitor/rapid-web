@@ -37,7 +37,7 @@ const EventCards = ({ eventList, history }) => {
 
                 <div style={{ marginTop: 'auto' }}>
                   <Badge theme="primary">
-                    {event.course || 'Todos os Cursos'}
+                    {event.studyField.name || 'Todos os Cursos'}
                   </Badge>
                   <div>
                     <i className="material-icons">pin_drop</i>
