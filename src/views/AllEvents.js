@@ -19,15 +19,17 @@ import {
 import PageTitle from "../components/common/PageTitle";
 
 import api from '../utils/api';
-import { formatDate, formatTime } from '../utils/date';
+import { formatDate, formatTime, sameDay } from '../utils/date';
 
 export default ({ }) => {
 
   const [startDate, setStartDate] = useState(new Date());
   const [checked, setChecked] = useState();
   const [eventList, setEventList] = useState([]);
+  const [defaultEventList, setDefaultEventList] = useState([]);
   const [fieldList, setFieldList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [fieldSelected, setFieldSelected] = useState(null);
 
   React.useEffect(() => {
     async function getEvents() {
@@ -38,6 +40,8 @@ export default ({ }) => {
           const events = res
             .filter(event => new Date(event.eventDate) >= new Date())
             .sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate));
+
+          setDefaultEventList(events);
           return setEventList(events);
         })
         .catch(err => setLoading(false));
@@ -58,6 +62,25 @@ export default ({ }) => {
 
     getFields();
   }, []);
+
+  const changeField = (field) => {
+    if (field.target.value === 'Todas as áreas')
+      return setEventList(defaultEventList);
+
+    const filtered = defaultEventList.filter(el => el.studyField.name === field.target.value);
+    setEventList(filtered);
+  }
+
+  const changeDate = (date) => {
+    if (!date) {
+      setStartDate(new Date());
+      return setEventList(defaultEventList);
+    }
+
+    const filtered = eventList.filter(el => sameDay(new Date(el.eventDate), date));
+    setStartDate(date);
+    setEventList(filtered);
+  }
 
   return (
     <Container fluid className="main-content-container px-4">
@@ -118,11 +141,11 @@ export default ({ }) => {
                 <ListGroupItem className="px-4 pb-3">
                   <div className="mb-3">
                     <strong className="text-muted d-block mb-2">
-                      Curso
-                  </strong>
+                      Área de Estudo
+                    </strong>
                     <div>
                       <InputGroup className="mb-3">
-                        <FormSelect>
+                        <FormSelect onChange={changeField}>
                           <option>Todas as áreas</option>
                           {fieldList.map((el, i) => <option key={i}>{el.name}</option>)}
                         </FormSelect>
@@ -148,9 +171,10 @@ export default ({ }) => {
                     </strong>
                     <DatePicker
                       selected={startDate}
-                      onChange={date => setStartDate(date)}
+                      onChange={date => changeDate(date)}
                       inline
                     />
+                    <a href="#clearDate" onClick={() => changeDate()}>Limpar Data</a>
                   </div>
                 </ListGroupItem>
               </ListGroup>

@@ -33,3 +33,9 @@ export const parseDate = (input) => {
 export const formatTime = (input) => {
   return input.substring(0, input.length - 3);
 }
+
+export const sameDay = function(dateOne, dateTwo) {
+  return dateOne.getFullYear() === dateTwo.getFullYear()
+    && dateOne.getDate() + 1 === dateTwo.getDate()
+    && dateOne.getMonth() === dateTwo.getMonth();
+}

@@ -34,7 +34,11 @@ const HomeEventList = () => {
     return api.get('/events')
       .then(res => {
         setLoading(false);
-        return setEventList(res.sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate)));
+
+        const events = res.filter(el => el.professorId === 1)
+          .sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate));
+
+        return setEventList(events);
       })
       .catch(err => console.log(err));
   }
@@ -44,7 +48,7 @@ const HomeEventList = () => {
       {loading && <LoadingSpinner />}
 
       {eventList.length === 0 && !loading && <NotFoundEvent />}
-      
+
       <div style={{ paddingTop: '1.5rem' }}>
         <Row>
           <Col lg="8" md="12">
