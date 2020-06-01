@@ -21,7 +21,7 @@ import PageTitle from "../components/common/PageTitle";
 import api from '../utils/api';
 import { formatDate, formatTime, sameDay } from '../utils/date';
 
-export default ({ }) => {
+export default ({ history }) => {
 
   const [startDate, setStartDate] = useState(new Date());
   const [checked, setChecked] = useState();
@@ -96,7 +96,8 @@ export default ({ }) => {
             <Row style={{ padding: '10px 20px' }}>
               <Card
                 className="card-post"
-                style={{ backgroundColor: '#fff', width: '100%', margin: '0 auto' }}
+                style={{ backgroundColor: '#fff', width: '100%', margin: '0 auto', cursor: 'pointer' }}
+                onClick={() => history.push(`/detalhes-evento/${el.id}`)}
               >
                 <CardBody style={{ padding: '10px', }}>
                   <Row>
