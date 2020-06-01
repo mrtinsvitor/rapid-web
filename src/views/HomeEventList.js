@@ -24,7 +24,11 @@ const HomeEventList = (props) => {
       return api.get('/events')
         .then(res => {
           setLoading(false);
-          return setEventList(res.sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate)));
+
+          const events = res
+            .filter(event => new Date(event.eventDate) >= new Date())
+            .sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate));
+          return setEventList(events);
         })
         .catch(err => setLoading(false));
     }

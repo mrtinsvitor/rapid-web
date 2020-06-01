@@ -20,11 +20,8 @@ import placeholderEventImage from '../../assets/images/event-image-placeholder.p
 const Editor = ({
   register,
   errors,
-  courseList,
+  studyFieldList,
   locationList,
-  addCourse,
-  removeCourse,
-  selectedCourses,
   courseId,
 }) => {
   return (
@@ -83,9 +80,9 @@ const Editor = ({
         </FormGroup>
 
         <FormGroup>
-          <label htmlFor="course" className="input-required">Cursos</label>
+          <label htmlFor="course" className="input-required">Área de estudo</label>
 
-          {errors.title && <p className="error-input">É necessário selecionar pelo menos um curso.</p>}
+          {errors.title && <p className="error-input">É necessário selecionar uma área de estudo.</p>}
 
           <div style={{ marginBottom: '15px' }}>
             <div
@@ -96,42 +93,18 @@ const Editor = ({
                 marginBottom: '20px'
               }}
             >
-              <FormSelect id="course" name="courseId" size="md" style={{ width: '80%' }} innerRef={register({ required: true })}>
-                <option invalid>Selecione um curso</option>
-                {courseList.map((course, i) =>
-                  <option key={i} value={course.id}>{course.name}</option>
+              <FormSelect id="studyField" name="studyFieldId" size="md" innerRef={register({ required: true })}>
+                <option invalid>Selecione uma área de estudo</option>
+                {studyFieldList.map((field, i) =>
+                  <option key={i} value={field.id}>{field.name}</option>
                 )}
               </FormSelect>
 
-              <Button
-                type="button"
-                pill
-                onClick={() => addCourse()}
-                disabled={isNaN(parseFloat(courseId)) || selectedCourses.find(course => courseId == course.id)}
-              >
-                Adicionar
-              </Button>
             </div>
-
-            {selectedCourses.length > 0 &&
-              <ListGroup small style={{ overflowY: 'scroll', maxHeight: '150px', marginBottom: '15px' }}>
-                {selectedCourses.map((course, i) =>
-                  <div key={i}>
-                    <ListGroupItem>
-                      <span onClick={() => removeCourse(course.id)}>
-                        <i className="far fa-trash-alt" style={{ float: 'right', fontSize: '20px', color: '#ff0000' }}></i>
-                      </span>
-                      <span>{course.name}</span>
-
-                    </ListGroupItem>
-                  </div>
-                )}
-              </ListGroup>
-            }
           </div>
         </FormGroup>
 
-        <FormGroup>
+        {/* <FormGroup>
           <label htmlFor="coverPhoto">Foto de Capa</label>
           <Row>
             <Col>
@@ -153,7 +126,7 @@ const Editor = ({
               </div>
             </Col>
           </Row>
-        </FormGroup>
+        </FormGroup> */}
       </CardBody>
     </Card >
   );

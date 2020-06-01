@@ -14,7 +14,7 @@ const EventCards = ({ eventList, history }) => {
   return (
     <Row>
       {eventList.map((event, idx) => (
-        <Col lg="4" key={idx} style={{marginBottom: '35px'}}>
+        <Col lg="4" key={idx} style={{ marginBottom: '35px' }}>
           <div style={{ cursor: 'pointer', height: '100%' }} onClick={() => history.push(`/detalhes-evento/${event.id}`)}>
             <Card
               className="card-post mb-4"
@@ -36,15 +36,12 @@ const EventCards = ({ eventList, history }) => {
                 </div>
 
                 <div style={{ marginTop: 'auto' }}>
-                  <Badge
-                    theme="primary"
-                    style={{ backgroundColor: event.finalizado ? '#4e545b' : null }}
-                  >
-                    {event.course || 'Todos os Cursos'}
+                  <Badge theme="primary">
+                    {event.studyField.name || 'Todos os Cursos'}
                   </Badge>
                   <div>
                     <i className="material-icons">pin_drop</i>
-                    <p className="card-text text-muted" style={{ display: 'inline-block', paddingLeft: '5px', marginBottom: 0 }}>{event.local || 'Unigranrio'}</p>
+                    <p className="card-text text-muted" style={{ display: 'inline-block', paddingLeft: '5px', marginBottom: 0 }}>{event.local.name || 'Unigranrio'}</p>
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
